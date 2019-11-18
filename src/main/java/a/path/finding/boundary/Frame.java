@@ -1,20 +1,27 @@
-package a.path.finding;
+package a.path.finding.boundary;
+
+import a.path.finding.APathFinding;
+import a.path.finding.Astar;
+import a.path.finding.control.CollisionChecker;
+import a.path.finding.ControlHandler;
+import a.path.finding.control.PathConnector;
+import a.path.finding.entity.Node;
+import a.path.finding.entity.Style;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
-import static a.path.finding.GlobalConstants.SIZE;
+import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
     /*
-     * change orienation after making turn
+    * path drawing fails when there was a unpassable, exclude node with all failed possible movements
+     * make Astar class singleton
      * draw movement lines on the grid
-     * change turning right collision checking
-     * change turning left collision checking - if or.DOWN check two fields down from the current, plus two on diagonal from the one that's 2 away down from current
-     * change forward collision checking if necessary
-     * try to implement above in some generic way
+     * try refactoring orientation related code in generic manner
      * make cotrolHandler smaller
      * draw information on nodes, like, F and H cost, orientation in the node
      * */
@@ -22,7 +29,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     ControlHandler controlHandler;
     JFrame window;
     APathFinding aPathFinding;
-    ;
     char currentKey = (char) 0;
     Node startNode, endNode;
     String stage;
@@ -91,31 +97,48 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     private void drawObstacles(Graphics g) {
         g.setColor(Color.black);
-        for (int i = 0; i < aPathFinding.getObstacles().size(); i++) {
-            g.fillRect(aPathFinding.getObstacles().get(i).getX() + 1, aPathFinding.getObstacles().get(i).getY() + 1,
+        for (int i = 0; i < Astar.getObstacles().size(); i++) {
+            g.fillRect(Astar.getObstacles().get(i).getX() + 1, Astar.getObstacles().get(i).getY() + 1,
                     SIZE - 1, SIZE - 1);
         }
     }
 
     private void drawOpenNodes(Graphics g) {
-        for (int i = 0; i < aPathFinding.getOpenNodes().size(); i++) {
-            Node current = aPathFinding.getOpenNodes().get(i);
+        for (int i = 0; i < Astar.getOpenNodes().size(); i++) {
+            Node current = Astar.getOpenNodes().get(i);
             g.setColor(Style.greenHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
         }
     }
 
     private void drawPath(Graphics g) {
-        for (int i = 0; i < pathConnector.getPath().size(); i++) {
-            Node current = pathConnector.getPath().get(i);
+        ArrayList<Node> pathNodes = pathConnector.getPath();
+        for (int i = 0; i < pathNodes.size(); i++) {
+            Node current = pathNodes.get(i);
+//            if (i != pathNodes.size() - 1) {
+//                Node next = pathNodes.get(i+1);
+//                drawArc(g, current, next);
+//            }
             g.setColor(Style.blueHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
         }
     }
 
+    private void drawArc(Graphics g, Node current, Node next) {
+        int startX = current.getX();
+        int startY = current.getY();
+        int endX = next.getX();
+        int endY = next.getY();
+        int height = endY - startY;
+        int width = endX - startX;
+        int angle = (int) Math.atan2(height, width);
+        g.setColor(Style.darkText);
+        g.fillArc(startX, startY, 100, 100, angle, angle);
+    }
+
     private void drawClosedNodes(Graphics g) {
-        for (int i = 0; i < aPathFinding.getClosedList().size(); i++) {
-            Node current = aPathFinding.getClosedList().get(i);
+        for (int i = 0; i < Astar.getClosedList().size(); i++) {
+            Node current = Astar.getClosedList().get(i);
             g.setColor(Style.redHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
         }
@@ -142,7 +165,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         } else if (aPathFinding.isComplete()) {
             stage = "Finished";
             controlHandler.getButtonByName("run").setText("clear");
-
         }
         handleButtonClick(e);
     }
@@ -155,6 +177,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
                 controlHandler.getButtonByName("run").setText("run");
                 stage = "Map Creation";
                 aPathFinding.reset();
+            }
+            if(e.getActionCommand().equals("deleteObstacles")) {
+                clearWalls();
             }
         }
         repaint();
@@ -212,13 +237,13 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void handleLeftClick(MouseEvent e) {
-//        if (currentKey == 's') {
-//            startNode = createNode(e, startNode);
-//        } else if (currentKey == 'e') {
-        endNode = createNode(e, endNode);
-//        } else {
-//            aPathFinding.addBorder(createWall(e));
-//        }
+        if (currentKey == 's') {
+            startNode = createNode(e, startNode);
+        } else if (currentKey == 'e') {
+            endNode = createNode(e, endNode);
+        } else {
+            aPathFinding.addBorder(createWall(e));
+        }
         repaint();
     }
 
@@ -267,11 +292,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void removeWall(int mouseBoxX, int mouseBoxY) {
-        int location = CollisionChecker.searchBorder(mouseBoxX, mouseBoxY, aPathFinding.getObstacles());
+        int location = CollisionChecker.searchBorder(mouseBoxX, mouseBoxY, Astar.getObstacles());
         if (location != -1) {
             aPathFinding.removeBorder(location);
         }
         repaint();
+    }
+
+    private void clearWalls() {
+        aPathFinding.clearBorder();
     }
 
     public void mouseMoved(MouseEvent e) {

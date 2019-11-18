@@ -1,14 +1,32 @@
-package a.path.finding;
+package a.path.finding.entity;
 
-import static a.path.finding.GlobalConstants.SIZE;
+import a.path.finding.orientation.Orientation;
+
+import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class Node {
     private int x, y, g, h, f;
     private Node parent;
+    private Orientation orientation;
 
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
+        this.orientation = Orientation.DOWN;
+    }
+
+    public Node(int x, int y, Orientation orientation) {
+        this.x = x;
+        this.y = y;
+        this.orientation = orientation;
+    }
+
+    public Orientation getOrientation() {
+        return orientation;
+    }
+
+    public void setOrientation(Orientation orientation) {
+        this.orientation = orientation;
     }
 
     public int getX() {
@@ -52,26 +70,16 @@ public class Node {
         this.h = h;
     }
 
-    public void setF(int f) {
-        this.f = f;
-    }
-
     public void setParent(Node parent) {
         this.parent = parent;
     }
 
     public static boolean isEqual(Node s, Node e) {
-        if (s.getX() == e.getX() && s.getY() == e.getY()) {
-            return true;
-        }
-        return false;
+        return s.getX() == e.getX() && s.getY() == e.getY();
     }
 
     public static boolean isInVicinity(Node current, Node target) {
-        if ((Math.abs(current.getX() - target.getX()) <= SIZE) &&
-                (Math.abs(current.getY() - target.getY()) <= SIZE)) {
-            return true;
-        }
-        return false;
+        return (Math.abs(current.getX() - target.getX()) <= SIZE) &&
+                (Math.abs(current.getY() - target.getY()) <= SIZE);
     }
 }

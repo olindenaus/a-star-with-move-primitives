@@ -1,4 +1,4 @@
-package a.path.finding;
+package a.path.finding.orientation;
 
 public enum Orientation {
 

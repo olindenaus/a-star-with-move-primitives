@@ -1,4 +1,4 @@
-package a.path.finding;
+package a.path.finding.entity;
 
 import java.awt.Color;
 import java.awt.Font;

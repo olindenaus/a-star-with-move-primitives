@@ -1,17 +1,22 @@
 package a.path.finding;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static a.path.finding.GlobalConstants.SIZE;
+import a.path.finding.boundary.Frame;
+import a.path.finding.control.PathConnector;
+import a.path.finding.control.Sort;
+import a.path.finding.entity.Node;
+import a.path.finding.orientation.*;
 
 public class APathFinding {
+
     private Frame frame;
     private Node startNode, endNode, parent;
     private boolean running, complete;
-    private ArrayList<Node> obstacles = new ArrayList<>(), open = new ArrayList<>(), closed = new ArrayList<>();
-    private Orientation orientation = Orientation.DOWN;
     private PathConnector pathConnector;
+    private OrientationDown orientationDown = new OrientationDown();
+    private OrientationLeft orientationLeft = new OrientationLeft();
+    private OrientationUp orientationUp = new OrientationUp();
+    private OrientationRight orientationRight = new OrientationRight();
+    boolean hasPossibleMovements = true;
     private Sort sort = new Sort();
 
     public boolean isRunning() {
@@ -26,18 +31,6 @@ public class APathFinding {
         return parent;
     }
 
-    public List<Node> getObstacles() {
-        return obstacles;
-    }
-
-    public List<Node> getOpenNodes() {
-        return open;
-    }
-
-    public List<Node> getClosedList() {
-        return closed;
-    }
-
     public APathFinding(Frame frame, Node startNode, Node endNode, PathConnector pathConnector) {
         this.startNode = startNode;
         this.endNode = endNode;
@@ -46,7 +39,7 @@ public class APathFinding {
     }
 
     public void start(Node s, Node e) {
-        addClosed(s);
+        Astar.addClosed(s);
         running = true;
         startNode = s;
         startNode.setG(0);
@@ -56,55 +49,34 @@ public class APathFinding {
     }
 
     public void reset() {
-        open.clear();
-        closed.clear();
-        pathConnector.path.clear();
+        Astar.getOpenNodes().clear();
+        Astar.getClosedList().clear();
+        pathConnector.getPath().clear();
         running = false;
         complete = false;
     }
 
     public void addBorder(Node node) {
-        if (obstacles.isEmpty()) {
-            obstacles.add(node);
-        } else if (!checkForDuplicates(node, obstacles)) {
-            obstacles.add(node);
+        if (Astar.getObstacles().isEmpty()) {
+            Astar.getObstacles().add(node);
+        } else if (!Astar.checkForDuplicates(node, Astar.getObstacles())) {
+            Astar.getObstacles().add(node);
         }
-    }
-
-    public void addClosed(Node node) {
-        if (closed.size() == 0) {
-            closed.add(node);
-        } else if (!checkForDuplicates(node, closed)) {
-            closed.add(node);
-        }
-    }
-
-    private boolean checkForDuplicates(Node node, List<Node> nodes) {
-        for (int i = 0; i < nodes.size(); i++) {
-            if (node.getX() == nodes.get(i).getX() && node.getY() == nodes.get(i).getY()) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void removeBorder(int location) {
-        obstacles.remove(location);
+        Astar.getObstacles().remove(location);
+    }
+
+    public void clearBorder() {
+        Astar.getObstacles().clear();
     }
 
     public void removeOpen(Node node) {
-        for (int i = 0; i < open.size(); i++) {
-            if (node.getX() == open.get(i).getX() && node.getY() == open.get(i).getY()) {
-                open.remove(i);
+        for (int i = 0; i < Astar.getOpenNodes().size(); i++) {
+            if (node.getX() == Astar.getOpenNodes().get(i).getX() && node.getY() == Astar.getOpenNodes().get(i).getY()) {
+                Astar.getOpenNodes().remove(i);
             }
-        }
-    }
-
-    public void addOpen(Node node) {
-        if (open.size() == 0) {
-            open.add(node);
-        } else if (!checkForDuplicates(node, open)) {
-            open.add(node);
         }
     }
 
@@ -120,177 +92,60 @@ public class APathFinding {
             return;
         }
         removeOpen(parent);
-        addClosed(parent);
+//        if (hasPossibleMovements) {
+        Astar.addClosed(parent);
+//        }
         this.parent = parent;
     }
 
     private void checkPossibilities(Node parent) {
-        if (orientation == Orientation.DOWN) {
-            checkDownOrientationMovePossibilities();
-        } else if (orientation == Orientation.RIGHT) {
+        hasPossibleMovements = false;
+        if (parent.getOrientation() == Orientation.DOWN) {
+            checkOrientationDownMovePossibilities();
+        } else if (parent.getOrientation() == Orientation.RIGHT) {
             checkRightOrientationMovePossibilities();
-        } else if (orientation == Orientation.UP) {
+        } else if (parent.getOrientation() == Orientation.UP) {
             checkUpOrientationMovePossibilities();
-        } else if (orientation == Orientation.LEFT) {
+        } else if (parent.getOrientation() == Orientation.LEFT) {
             checkLeftOrientationMovePossibilities();
         }
     }
 
-    private void checkDownOrientationMovePossibilities() {
-        checkForwardMoveWhenOrientationDown(parent);
-        checkLeftTurnWhenOrientationDown(parent);
-        checkRightTurnWhenOrientationDown(parent);
-    }
-
-    private void checkForwardMoveWhenOrientationDown(Node node) {
-        int move = SIZE * 5;
-        int possibleX = node.getX();
-        int possibleY = node.getY() + move;
-        if (CollisionChecker.checkForwardCollisions(node, possibleX, possibleY, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkLeftTurnWhenOrientationDown(Node node) {
-        int possibleX = node.getX() + 3 * SIZE;
-        int possibleY = node.getY() + 4 * SIZE;
-        if (CollisionChecker.checkTurnLeftCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkRightTurnWhenOrientationDown(Node node) {
-        int possibleX = node.getX() - 3 * SIZE;
-        int possibleY = node.getY() + 4 * SIZE;
-        if (CollisionChecker.checkTurnRightCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
+    private void checkOrientationDownMovePossibilities() {
+        hasPossibleMovements |= orientationDown.checkForwardMoveWhenOrientationDown(parent, endNode);
+        hasPossibleMovements |= orientationDown.checkLeftTurnWhenOrientationDown(parent, endNode);
+        hasPossibleMovements |= orientationDown.checkRightTurnWhenOrientationDown(parent, endNode);
     }
 
     private void checkRightOrientationMovePossibilities() {
-        checkForwardMoveWhenOrientationRight(parent);
-        checkRightTurnWhenOrientationRight(parent);
-        checkLeftTurnWhenOrientationRight(parent);
-    }
-
-    private void checkForwardMoveWhenOrientationRight(Node node) {
-        int move = SIZE * 5;
-        int possibleX = node.getX() - move;
-        int possibleY = node.getY();
-        if (CollisionChecker.checkForwardCollisions(node, possibleX, possibleY, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkRightTurnWhenOrientationRight(Node node) {
-        int possibleX = node.getX() - 4 * SIZE;
-        int possibleY = node.getY() - 3 * SIZE;
-        if (CollisionChecker.checkTurnRightCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkLeftTurnWhenOrientationRight(Node node) {
-        int possibleX = node.getX() + 4 * SIZE;
-        int possibleY = node.getY() - 3 * SIZE;
-        if (CollisionChecker.checkTurnLeftCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
+        hasPossibleMovements |= orientationRight.checkForwardMoveWhenOrientationRight(parent, endNode);
+        hasPossibleMovements |= orientationRight.checkRightTurnWhenOrientationRight(parent, endNode);
+        hasPossibleMovements |= orientationRight.checkLeftTurnWhenOrientationRight(parent, endNode);
     }
 
     private void checkUpOrientationMovePossibilities() {
-        checkForwardMoveWhenOrientationUp(parent);
-        checkLeftTurnWhenOrientationUp(parent);
-        checkRightTurnWhenOrientationUp(parent);
-    }
-
-    private void checkForwardMoveWhenOrientationUp(Node node) {
-        int move = SIZE * 5;
-        int possibleX = node.getX();
-        int possibleY = node.getY() - move;
-        if (CollisionChecker.checkForwardCollisions(node, possibleX, possibleY, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkLeftTurnWhenOrientationUp(Node node) {
-        int possibleX = node.getX() - 3 * SIZE;
-        int possibleY = node.getY() - 4 * SIZE;
-        if (CollisionChecker.checkTurnLeftCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkRightTurnWhenOrientationUp(Node node) {
-        int possibleX = node.getX() + 3 * SIZE;
-        int possibleY = node.getY() - 4 * SIZE;
-        if (CollisionChecker.checkTurnRightCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
+        hasPossibleMovements |= orientationUp.checkForwardMoveWhenOrientationUp(parent, endNode);
+        hasPossibleMovements |= orientationUp.checkLeftTurnWhenOrientationUp(parent, endNode);
+        hasPossibleMovements |= orientationUp.checkRightTurnWhenOrientationUp(parent, endNode);
     }
 
     private void checkLeftOrientationMovePossibilities() {
-        checkForwardMoveWhenOrientationLeft(parent);
-        checkLeftTurnWhenOrientationLeft(parent);
-        checkRightTurnWhenOrientationLeft(parent);
-    }
-
-    private void checkForwardMoveWhenOrientationLeft(Node node) {
-        int move = SIZE * 5;
-        int possibleX = node.getX() + move;
-        int possibleY = node.getY();
-        if (CollisionChecker.checkForwardCollisions(node, possibleX, possibleY, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkLeftTurnWhenOrientationLeft(Node node) {
-        int possibleX = node.getX() - 4 * SIZE;
-        int possibleY = node.getY() + 3 * SIZE;
-        if (CollisionChecker.checkTurnLeftCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void checkRightTurnWhenOrientationLeft(Node node) {
-        int possibleX = node.getX() + 4 * SIZE;
-        int possibleY = node.getY() + 3 * SIZE;
-        if (CollisionChecker.checkTurnRightCollisions(node, obstacles)) {
-            calculateNodeValues(possibleX, possibleY, node);
-        }
-    }
-
-    private void calculateNodeValues(int possibleX, int possibleY, Node parent) {
-        Node openNode = new Node(possibleX, possibleY);
-        openNode.setParent(parent);
-        openNode.setG(calculateGCost(openNode));
-        openNode.setH(calculateHCost(openNode));
-        addOpen(openNode);
-    }
-
-    private int calculateGCost(Node openNode) {
-        int gCost = parent.getG();
-        gCost += SIZE * 4;
-        return gCost;
-    }
-
-    private int calculateHCost(Node openNode) {
-        int hXDiff = Math.abs(endNode.getX() - openNode.getX());
-        int hYDiff = Math.abs(endNode.getY() - openNode.getY());
-        return hXDiff + hYDiff;
+        hasPossibleMovements |= orientationLeft.checkForwardMoveWhenOrientationLeft(parent, endNode);
+        hasPossibleMovements |= orientationLeft.checkLeftTurnWhenOrientationLeft(parent, endNode);
+        hasPossibleMovements |= orientationLeft.checkRightTurnWhenOrientationLeft(parent, endNode);
     }
 
     public Node lowestFCostFromOpenNodes() {
-        if (open.size() > 0) {
-            sort.bubbleSort(open);
-            return open.get(0);
+        if (Astar.getOpenNodes().size() > 0) {
+            sort.bubbleSort(Astar.getOpenNodes());
+            return Astar.getOpenNodes().get(0);
         }
         return null;
     }
 
     private void success() {
         endNode.setParent(parent.getParent());
-        pathConnector.connectPath(startNode, endNode, getClosedList());
+        pathConnector.connectPath(startNode, endNode, Astar.getClosedList());
         running = false;
         complete = true;
         frame.repaint();

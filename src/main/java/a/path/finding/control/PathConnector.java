@@ -1,4 +1,6 @@
-package a.path.finding;
+package a.path.finding.control;
+
+import a.path.finding.entity.Node;
 
 import java.util.ArrayList;
 import java.util.List;

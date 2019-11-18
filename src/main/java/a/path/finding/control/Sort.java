@@ -1,6 +1,9 @@
-package a.path.finding;
+package a.path.finding.control;
+
+import a.path.finding.entity.Node;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Sort {
     private boolean lowToHigh, highToLow;
@@ -39,7 +42,7 @@ public class Sort {
         }
     }
 
-    public void bubbleSort(ArrayList<Node> list) {
+    public void bubbleSort(List<Node> list) {
         int controlVariable = -1;
         Node temp;
 

@@ -1,5 +1,8 @@
 package a.path.finding;
 
+import a.path.finding.boundary.Frame;
+import a.path.finding.entity.Style;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -11,7 +14,7 @@ import java.util.ArrayList;
 public class ControlHandler {
     private Frame frame;
     private JLabel modeText, noPathT;
-    private JButton run;
+    private JButton run, deleteObstacles;
     private ArrayList<JLabel> labels;
     private ArrayList<JButton> buttons;
     Dimension npD;
@@ -22,7 +25,7 @@ public class ControlHandler {
         buttons = new ArrayList<>();
 
         setUpLabels();
-        setUpButton();
+        setUpButtons();
         addLabels();
         addButtons();
     }
@@ -41,7 +44,7 @@ public class ControlHandler {
         npD = noPathT.getPreferredSize();
     }
 
-    private void setUpButton() {
+    private void setUpButtons() {
         run = new JButton();
         run.setText("run");
         run.setName("run");
@@ -49,6 +52,15 @@ public class ControlHandler {
         run.addActionListener(frame);
         run.setMargin(new Insets(0, 0, 0, 0));
         run.setVisible(true);
+
+        deleteObstacles = new JButton();
+        deleteObstacles.setText("Delete obstacles");
+        deleteObstacles.setActionCommand("deleteObstacles");
+        deleteObstacles.setName("deleteObstacles");
+        deleteObstacles.setFocusable(false);
+        deleteObstacles.addActionListener(frame);
+        deleteObstacles.setMargin(new Insets(0,0,0,0));
+        deleteObstacles.setVisible(true);
     }
 
     public JLabel getLabelByName(String name) {
@@ -73,10 +85,12 @@ public class ControlHandler {
         Dimension size = modeText.getPreferredSize();
         modeText.setBounds(10, frame.getHeight() - 40, size.width, size.height);
         run.setBounds(10, frame.getHeight() - 60, 52, 22);
+        deleteObstacles.setBounds(10, frame.getHeight() - 100, 70, 30);
     }
 
     public void addAllComponents() {
         frame.add(run);
+        frame.add(deleteObstacles);
         frame.add(modeText);
     }
 
@@ -87,5 +101,6 @@ public class ControlHandler {
 
     private void addButtons() {
         buttons.add(run);
+        buttons.add(deleteObstacles);
     }
 }
