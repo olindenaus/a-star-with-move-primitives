@@ -18,7 +18,6 @@ import static a.path.finding.entity.GlobalConstants.SIZE;
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
     /*
-    * path drawing fails when there was a unpassable, exclude node with all failed possible movements
      * make Astar class singleton
      * draw movement lines on the grid
      * try refactoring orientation related code in generic manner
@@ -33,6 +32,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     Node startNode, endNode;
     String stage;
     PathConnector pathConnector = new PathConnector();
+    Astar astar = Astar.getInstance();
 
     Timer timer = new Timer(100, this);
 
@@ -97,15 +97,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     private void drawObstacles(Graphics g) {
         g.setColor(Color.black);
-        for (int i = 0; i < Astar.getObstacles().size(); i++) {
-            g.fillRect(Astar.getObstacles().get(i).getX() + 1, Astar.getObstacles().get(i).getY() + 1,
+        for (int i = 0; i < astar.getObstacles().size(); i++) {
+            g.fillRect(astar.getObstacles().get(i).getX() + 1, astar.getObstacles().get(i).getY() + 1,
                     SIZE - 1, SIZE - 1);
         }
     }
 
     private void drawOpenNodes(Graphics g) {
-        for (int i = 0; i < Astar.getOpenNodes().size(); i++) {
-            Node current = Astar.getOpenNodes().get(i);
+        for (int i = 0; i < astar.getOpenNodes().size(); i++) {
+            Node current = astar.getOpenNodes().get(i);
             g.setColor(Style.greenHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
         }
@@ -137,8 +137,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void drawClosedNodes(Graphics g) {
-        for (int i = 0; i < Astar.getClosedList().size(); i++) {
-            Node current = Astar.getClosedList().get(i);
+        for (int i = 0; i < astar.getClosedList().size(); i++) {
+            Node current = astar.getClosedList().get(i);
             g.setColor(Style.redHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
         }
@@ -292,7 +292,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void removeWall(int mouseBoxX, int mouseBoxY) {
-        int location = CollisionChecker.searchBorder(mouseBoxX, mouseBoxY, Astar.getObstacles());
+        int location = CollisionChecker.searchBorder(mouseBoxX, mouseBoxY, astar.getObstacles());
         if (location != -1) {
             aPathFinding.removeBorder(location);
         }

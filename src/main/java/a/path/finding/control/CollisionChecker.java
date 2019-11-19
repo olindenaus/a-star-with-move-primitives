@@ -221,7 +221,7 @@ public class CollisionChecker {
 
     public static boolean checkForwardCollisionsWhenOrientationUp(Node node, int targetX, int targetY, List<Node> obstacles) {
         int nodeY = node.getY();
-        int yDiff = targetY - nodeY;
+        int yDiff = Math.abs(targetY - nodeY);
         int inc = yDiff / SIZE;
         for (int i = inc; i <= yDiff; i += inc) {
             if (searchBorder(targetX, nodeY - i, obstacles) != -1) {

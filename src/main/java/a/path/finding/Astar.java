@@ -7,21 +7,29 @@ import java.util.List;
 
 public class Astar {
 
-    private static ArrayList<Node> obstacles = new ArrayList<>(), open = new ArrayList<>(), closed = new ArrayList<>();
+    private static Astar instance = new Astar();
 
-    public static List<Node> getObstacles() {
+    private ArrayList<Node> obstacles = new ArrayList<>(), open = new ArrayList<>(), closed = new ArrayList<>();
+
+    public List<Node> getObstacles() {
         return obstacles;
     }
 
-    public static List<Node> getOpenNodes() {
+    public List<Node> getOpenNodes() {
         return open;
     }
 
-    public static List<Node> getClosedList() {
+    private Astar() {}
+
+    public static Astar getInstance() {
+        return instance;
+    }
+
+    public List<Node> getClosedList() {
         return closed;
     }
 
-    public static void addOpen(Node node) {
+    public void addOpen(Node node) {
         if (open.size() == 0) {
             open.add(node);
         } else if (!checkForDuplicates(node, open)) {
@@ -29,7 +37,7 @@ public class Astar {
         }
     }
 
-    public static void addClosed(Node node) {
+    public void addClosed(Node node) {
         if (closed.size() == 0) {
             closed.add(node);
         } else if (!checkForDuplicates(node, closed)) {
@@ -37,7 +45,7 @@ public class Astar {
         }
     }
 
-    public static boolean checkForDuplicates(Node node, List<Node> nodes) {
+    public boolean checkForDuplicates(Node node, List<Node> nodes) {
         for (Node value : nodes) {
             if (node.getX() == value.getX() && node.getY() == value.getY()) {
                 return true;

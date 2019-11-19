@@ -18,6 +18,7 @@ public class APathFinding {
     private OrientationRight orientationRight = new OrientationRight();
     boolean hasPossibleMovements = true;
     private Sort sort = new Sort();
+    Astar astar = Astar.getInstance();
 
     public boolean isRunning() {
         return running;
@@ -39,7 +40,7 @@ public class APathFinding {
     }
 
     public void start(Node s, Node e) {
-        Astar.addClosed(s);
+        astar.addClosed(s);
         running = true;
         startNode = s;
         startNode.setG(0);
@@ -49,33 +50,33 @@ public class APathFinding {
     }
 
     public void reset() {
-        Astar.getOpenNodes().clear();
-        Astar.getClosedList().clear();
+        astar.getOpenNodes().clear();
+        astar.getClosedList().clear();
         pathConnector.getPath().clear();
         running = false;
         complete = false;
     }
 
     public void addBorder(Node node) {
-        if (Astar.getObstacles().isEmpty()) {
-            Astar.getObstacles().add(node);
-        } else if (!Astar.checkForDuplicates(node, Astar.getObstacles())) {
-            Astar.getObstacles().add(node);
+        if (astar.getObstacles().isEmpty()) {
+            astar.getObstacles().add(node);
+        } else if (!astar.checkForDuplicates(node, astar.getObstacles())) {
+            astar.getObstacles().add(node);
         }
     }
 
     public void removeBorder(int location) {
-        Astar.getObstacles().remove(location);
+        astar.getObstacles().remove(location);
     }
 
     public void clearBorder() {
-        Astar.getObstacles().clear();
+        astar.getObstacles().clear();
     }
 
     public void removeOpen(Node node) {
-        for (int i = 0; i < Astar.getOpenNodes().size(); i++) {
-            if (node.getX() == Astar.getOpenNodes().get(i).getX() && node.getY() == Astar.getOpenNodes().get(i).getY()) {
-                Astar.getOpenNodes().remove(i);
+        for (int i = 0; i < astar.getOpenNodes().size(); i++) {
+            if (node.getX() == astar.getOpenNodes().get(i).getX() && node.getY() == astar.getOpenNodes().get(i).getY()) {
+                astar.getOpenNodes().remove(i);
             }
         }
     }
@@ -93,7 +94,7 @@ public class APathFinding {
         }
         removeOpen(parent);
 //        if (hasPossibleMovements) {
-        Astar.addClosed(parent);
+        astar.addClosed(parent);
 //        }
         this.parent = parent;
     }
@@ -136,16 +137,16 @@ public class APathFinding {
     }
 
     public Node lowestFCostFromOpenNodes() {
-        if (Astar.getOpenNodes().size() > 0) {
-            sort.bubbleSort(Astar.getOpenNodes());
-            return Astar.getOpenNodes().get(0);
+        if (astar.getOpenNodes().size() > 0) {
+            sort.bubbleSort(astar.getOpenNodes());
+            return astar.getOpenNodes().get(0);
         }
         return null;
     }
 
     private void success() {
         endNode.setParent(parent.getParent());
-        pathConnector.connectPath(startNode, endNode, Astar.getClosedList());
+        pathConnector.connectPath(startNode, endNode, astar.getClosedList());
         running = false;
         complete = true;
         frame.repaint();
