@@ -18,10 +18,7 @@ import static a.path.finding.entity.GlobalConstants.SIZE;
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
     /*
-     * make Astar class singleton
-     * draw movement lines on the grid
      * try refactoring orientation related code in generic manner
-     * make cotrolHandler smaller
      * draw information on nodes, like, F and H cost, orientation in the node
      * */
 
@@ -65,7 +62,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         window = new JFrame();
         window.setContentPane(this);
         window.setTitle("A* with move primitives");
-        window.getContentPane().setPreferredSize(new Dimension(700, 600));
+        window.getContentPane().setPreferredSize(new Dimension(800, 600));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setLocationRelativeTo(null);
@@ -82,7 +79,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         drawPoint(g, startNode, true);
         drawPoint(g, endNode, false);
         drawControlPanel(g);
-        controlHandler.getLabelByName("modeText").setText("Mode: " + stage);
+        controlHandler.getLabelByName("modeText").setText(stage);
         controlHandler.positionElements();
     }
 
@@ -115,10 +112,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         ArrayList<Node> pathNodes = pathConnector.getPath();
         for (int i = 0; i < pathNodes.size(); i++) {
             Node current = pathNodes.get(i);
-//            if (i != pathNodes.size() - 1) {
-//                Node next = pathNodes.get(i+1);
-//                drawArc(g, current, next);
-//            }
+            if (i != pathNodes.size() - 1) {
+                Node next = pathNodes.get(i+1);
+                drawArc(g, current, next);
+            }
             g.setColor(Style.blueHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
         }
@@ -129,11 +126,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         int startY = current.getY();
         int endX = next.getX();
         int endY = next.getY();
-        int height = endY - startY;
-        int width = endX - startX;
-        int angle = (int) Math.atan2(height, width);
         g.setColor(Style.darkText);
-        g.fillArc(startX, startY, 100, 100, angle, angle);
+        g.drawLine(startX, startY, endX, endY);
     }
 
     private void drawClosedNodes(Graphics g) {
@@ -156,7 +150,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     private void drawControlPanel(Graphics g) {
         g.setColor(Style.btnPanel);
-        g.fillRect(10, getHeight() - 96, 322, 90);
+        g.fillRect(5, getHeight() - 70, 182, 70);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -165,6 +159,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         } else if (aPathFinding.isComplete()) {
             stage = "Finished";
             controlHandler.getButtonByName("run").setText("clear");
+            timer.stop();
         }
         handleButtonClick(e);
     }

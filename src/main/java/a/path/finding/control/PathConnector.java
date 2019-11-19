@@ -15,7 +15,7 @@ public class PathConnector {
 
     public void connectPath(Node startNode, Node endNode, List<Node> closedList) {
         Node parentNode = endNode.getParent();
-
+        addPath(endNode);
         while (!Node.isEqual(parentNode, startNode)) {
             addPath(parentNode);
             for (int i = 0; i < closedList.size(); i++) {
@@ -26,6 +26,7 @@ public class PathConnector {
                 }
             }
         }
+        addPath(startNode);
     }
 
     public void addPath(Node node) {

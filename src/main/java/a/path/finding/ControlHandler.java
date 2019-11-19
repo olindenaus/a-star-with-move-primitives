@@ -3,21 +3,17 @@ package a.path.finding;
 import a.path.finding.boundary.Frame;
 import a.path.finding.entity.Style;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Insets;
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 
 public class ControlHandler {
     private Frame frame;
-    private JLabel modeText, noPathT;
+    private JLabel modeText;
     private JButton run, deleteObstacles;
     private ArrayList<JLabel> labels;
     private ArrayList<JButton> buttons;
-    Dimension npD;
 
     public ControlHandler(Frame frame) {
         this.frame = frame;
@@ -36,17 +32,12 @@ public class ControlHandler {
         modeText.setFont(Style.bigText);
         modeText.setForeground(Style.darkText);
         modeText.setVisible(true);
-
-        noPathT = new JLabel("NO PATH");
-        noPathT.setName("noPathT");
-        noPathT.setForeground(Color.white);
-        noPathT.setFont(Style.REALBIGText);
-        npD = noPathT.getPreferredSize();
     }
 
     private void setUpButtons() {
         run = new JButton();
-        run.setText("run");
+        run.setText("Run");
+        run.setActionCommand("run");
         run.setName("run");
         run.setFocusable(false);
         run.addActionListener(frame);
@@ -85,7 +76,7 @@ public class ControlHandler {
         Dimension size = modeText.getPreferredSize();
         modeText.setBounds(10, frame.getHeight() - 40, size.width, size.height);
         run.setBounds(10, frame.getHeight() - 60, 52, 22);
-        deleteObstacles.setBounds(10, frame.getHeight() - 100, 70, 30);
+        deleteObstacles.setBounds(70, frame.getHeight() - 60, 110, 22);
     }
 
     public void addAllComponents() {
@@ -96,7 +87,6 @@ public class ControlHandler {
 
     private void addLabels() {
         labels.add(modeText);
-        labels.add(noPathT);
     }
 
     private void addButtons() {

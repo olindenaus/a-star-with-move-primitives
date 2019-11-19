@@ -89,6 +89,7 @@ public class APathFinding {
         }
         if (Node.isInVicinity(parent, endNode)) {
             this.parent = parent;
+            astar.addClosed(parent);
             success();
             return;
         }
@@ -145,7 +146,7 @@ public class APathFinding {
     }
 
     private void success() {
-        endNode.setParent(parent.getParent());
+        endNode.setParent(parent);
         pathConnector.connectPath(startNode, endNode, astar.getClosedList());
         running = false;
         complete = true;
