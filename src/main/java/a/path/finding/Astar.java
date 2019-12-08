@@ -3,13 +3,17 @@ package a.path.finding;
 import a.path.finding.entity.Node;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Astar {
 
+    private Comparator<Node> byFCost = Comparator.comparing(Node::getF, Integer::compareTo);
+
     private static Astar instance = new Astar();
 
-    private ArrayList<Node> obstacles = new ArrayList<>(), open = new ArrayList<>(), closed = new ArrayList<>();
+    private List<Node> obstacles = new ArrayList<>(), open = new ArrayList<>(), closed = new ArrayList<>();
 
     public List<Node> getObstacles() {
         return obstacles;
@@ -30,6 +34,7 @@ public class Astar {
     }
 
     public void addOpen(Node node) {
+        node.setF();
         if (open.size() == 0) {
             open.add(node);
         } else if (!checkForDuplicates(node, open)) {
@@ -52,5 +57,11 @@ public class Astar {
             }
         }
         return false;
+    }
+
+    public void sortOpen() {
+        this.open = open.stream()
+                .sorted(byFCost)
+                .collect(Collectors.toList());
     }
 }

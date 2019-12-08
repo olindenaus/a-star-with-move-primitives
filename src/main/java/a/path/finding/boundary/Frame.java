@@ -18,8 +18,8 @@ import static a.path.finding.entity.GlobalConstants.SIZE;
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
     /*
-     * try refactoring orientation related code in generic manner
-     * draw information on nodes, like, F and H cost, orientation in the node
+     * draw information on nodes, like, F and H cost, orientation in the node, resolution
+     *
      * */
 
     ControlHandler controlHandler;
@@ -38,8 +38,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     public Frame() {
-        startNode = new Node(5 * SIZE, SIZE);
-        endNode = new Node(5 * SIZE, 5 * SIZE);
+        int startingResolution = 0;
+        startNode = new Node(5 * SIZE, SIZE, startingResolution);
+        endNode = new Node(5 * SIZE, 5 * SIZE, startingResolution);
         controlHandler = new ControlHandler(this);
         stage = "Map Creation";
         setLayout(null);
@@ -62,7 +63,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         window = new JFrame();
         window.setContentPane(this);
         window.setTitle("A* with move primitives");
-        window.getContentPane().setPreferredSize(new Dimension(800, 600));
+        window.getContentPane().setPreferredSize(new Dimension(1600, 960));
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.pack();
         window.setLocationRelativeTo(null);

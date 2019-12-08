@@ -2,23 +2,34 @@ package a.path.finding.entity;
 
 import a.path.finding.orientation.Orientation;
 
+import static a.path.finding.entity.GlobalConstants.RESOLUTION_PENALTY;
 import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class Node {
     private int x, y, g, h, f;
     private Node parent;
     private Orientation orientation;
+    private int resolution;
 
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
         this.orientation = Orientation.DOWN;
+        this.resolution = 0;
     }
 
-    public Node(int x, int y, Orientation orientation) {
+    public Node(int x, int y, int resolution) {
+        this.x = x;
+        this.y = y;
+        this.orientation = Orientation.DOWN;
+        this.resolution = resolution;
+    }
+
+    public Node(int x, int y, Orientation orientation, int resolution) {
         this.x = x;
         this.y = y;
         this.orientation = orientation;
+        this.resolution = resolution;
     }
 
     public Orientation getOrientation() {
@@ -46,7 +57,11 @@ public class Node {
     }
 
     public int getF() {
-        return getG() + getH();
+        return f;
+    }
+
+    public int getResolution() {
+        return resolution;
     }
 
     public Node getNode() {
@@ -70,8 +85,16 @@ public class Node {
         this.h = h;
     }
 
+    public void setF() {
+        this.f = h + g + resolution*RESOLUTION_PENALTY;
+    }
+
     public void setParent(Node parent) {
         this.parent = parent;
+    }
+
+    public void setResolution(int resolution) {
+        this.resolution = resolution;
     }
 
     public static boolean isEqual(Node s, Node e) {
@@ -81,5 +104,18 @@ public class Node {
     public static boolean isInVicinity(Node current, Node target) {
         return (Math.abs(current.getX() - target.getX()) <= SIZE) &&
                 (Math.abs(current.getY() - target.getY()) <= SIZE);
+    }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "x=" + x +
+                ", y=" + y +
+                ", g=" + g +
+                ", h=" + h +
+                ", f=" + f +
+                ", or=" + orientation +
+                ", res=" + resolution +
+                '}';
     }
 }

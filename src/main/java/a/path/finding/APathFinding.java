@@ -2,9 +2,12 @@ package a.path.finding;
 
 import a.path.finding.boundary.Frame;
 import a.path.finding.control.PathConnector;
-import a.path.finding.control.Sort;
 import a.path.finding.entity.Node;
-import a.path.finding.orientation.*;
+import a.path.finding.orientation.Orientation;
+import a.path.finding.orientation.OrientationDown;
+import a.path.finding.orientation.OrientationLeft;
+import a.path.finding.orientation.OrientationRight;
+import a.path.finding.orientation.OrientationUp;
 
 public class APathFinding {
 
@@ -17,8 +20,7 @@ public class APathFinding {
     private OrientationUp orientationUp = new OrientationUp();
     private OrientationRight orientationRight = new OrientationRight();
     boolean hasPossibleMovements = true;
-    private Sort sort = new Sort();
-    Astar astar = Astar.getInstance();
+    private Astar astar = Astar.getInstance();
 
     public boolean isRunning() {
         return running;
@@ -103,43 +105,45 @@ public class APathFinding {
     private void checkPossibilities(Node parent) {
         hasPossibleMovements = false;
         if (parent.getOrientation() == Orientation.DOWN) {
-            checkOrientationDownMovePossibilities();
+            checkOrientationDownMovePossibilities(parent);
         } else if (parent.getOrientation() == Orientation.RIGHT) {
-            checkRightOrientationMovePossibilities();
+            checkRightOrientationMovePossibilities(parent);
         } else if (parent.getOrientation() == Orientation.UP) {
-            checkUpOrientationMovePossibilities();
+            checkUpOrientationMovePossibilities(parent);
         } else if (parent.getOrientation() == Orientation.LEFT) {
-            checkLeftOrientationMovePossibilities();
+            checkLeftOrientationMovePossibilities(parent);
         }
+        Node higherResolutionNode = new Node(parent.getX(), parent.getY(), parent.getOrientation(), parent.getResolution()+1);
+        astar.addOpen(higherResolutionNode);
     }
 
-    private void checkOrientationDownMovePossibilities() {
+    private void checkOrientationDownMovePossibilities(Node parent) {
         hasPossibleMovements |= orientationDown.checkForwardMoveWhenOrientationDown(parent, endNode);
         hasPossibleMovements |= orientationDown.checkLeftTurnWhenOrientationDown(parent, endNode);
         hasPossibleMovements |= orientationDown.checkRightTurnWhenOrientationDown(parent, endNode);
     }
 
-    private void checkRightOrientationMovePossibilities() {
+    private void checkRightOrientationMovePossibilities(Node parent) {
         hasPossibleMovements |= orientationRight.checkForwardMoveWhenOrientationRight(parent, endNode);
         hasPossibleMovements |= orientationRight.checkRightTurnWhenOrientationRight(parent, endNode);
         hasPossibleMovements |= orientationRight.checkLeftTurnWhenOrientationRight(parent, endNode);
     }
 
-    private void checkUpOrientationMovePossibilities() {
+    private void checkUpOrientationMovePossibilities(Node parent) {
         hasPossibleMovements |= orientationUp.checkForwardMoveWhenOrientationUp(parent, endNode);
         hasPossibleMovements |= orientationUp.checkLeftTurnWhenOrientationUp(parent, endNode);
         hasPossibleMovements |= orientationUp.checkRightTurnWhenOrientationUp(parent, endNode);
     }
 
-    private void checkLeftOrientationMovePossibilities() {
+    private void checkLeftOrientationMovePossibilities(Node parent) {
         hasPossibleMovements |= orientationLeft.checkForwardMoveWhenOrientationLeft(parent, endNode);
         hasPossibleMovements |= orientationLeft.checkLeftTurnWhenOrientationLeft(parent, endNode);
         hasPossibleMovements |= orientationLeft.checkRightTurnWhenOrientationLeft(parent, endNode);
     }
 
     public Node lowestFCostFromOpenNodes() {
-        if (astar.getOpenNodes().size() > 0) {
-            sort.bubbleSort(astar.getOpenNodes());
+        if (!astar.getOpenNodes().isEmpty()) {
+            astar.sortOpen();
             return astar.getOpenNodes().get(0);
         }
         return null;

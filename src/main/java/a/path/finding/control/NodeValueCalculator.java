@@ -11,10 +11,11 @@ public class NodeValueCalculator {
     private Astar astar = Astar.getInstance();
 
     public void calculateNodeValues(int possibleX, int possibleY, Node parent, Node endNode, Orientation orientation) {
-        Node openNode = new Node(possibleX, possibleY, orientation);
+        Node openNode = new Node(possibleX, possibleY, orientation, parent.getResolution());
         openNode.setParent(parent);
         openNode.setG(calculateGCost(openNode, parent));
         openNode.setH(calculateHCost(openNode, endNode));
+//        openNode.setF();
         astar.addOpen(openNode);
     }
 
