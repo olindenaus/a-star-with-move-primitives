@@ -14,13 +14,9 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 import static a.path.finding.entity.GlobalConstants.SIZE;
+import static a.path.finding.entity.GlobalConstants.TIME_INTERVAL;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
-
-    /*
-     * draw information on nodes, like, F and H cost, orientation in the node, resolution
-     *
-     * */
 
     ControlHandler controlHandler;
     JFrame window;
@@ -31,16 +27,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     PathConnector pathConnector = new PathConnector();
     Astar astar = Astar.getInstance();
 
-    Timer timer = new Timer(100, this);
+    Timer timer = new Timer(TIME_INTERVAL, this);
 
     public static void main(String[] args) {
         new Frame();
     }
 
     public Frame() {
-        int startingResolution = 0;
-        startNode = new Node(5 * SIZE, SIZE, startingResolution);
-        endNode = new Node(5 * SIZE, 5 * SIZE, startingResolution);
+        startNode = new Node(5 * SIZE, SIZE);
+        endNode = new Node(5 * SIZE, 5 * SIZE);
         controlHandler = new ControlHandler(this);
         stage = "Map Creation";
         setLayout(null);
@@ -73,11 +68,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         drawGrid(g);
+        drawPoint(g, startNode, true);
         drawObstacles(g);
         drawOpenNodes(g);
         drawClosedNodes(g);
         drawPath(g);
-        drawPoint(g, startNode, true);
         drawPoint(g, endNode, false);
         drawControlPanel(g);
         controlHandler.getLabelByName("modeText").setText(stage);
@@ -106,6 +101,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             Node current = astar.getOpenNodes().get(i);
             g.setColor(Style.greenHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
+            drawInfo(current, g);
         }
     }
 
@@ -119,6 +115,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             }
             g.setColor(Style.blueHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
+            drawInfo(current, g);
         }
     }
 
@@ -136,6 +133,22 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             Node current = astar.getClosedList().get(i);
             g.setColor(Style.redHighlight);
             g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
+            drawInfo(current, g);
+        }
+    }
+
+    public void drawInfo(Node current, Graphics g) {
+        if (SIZE > 49) {
+            g.setFont(Style.smallNumbers);
+            g.setColor(Color.black);
+            int top = current.getY() + 16;
+            int bot = current.getY() + SIZE - 7;
+            int left = current.getX() + 2;
+            int right = current.getX() + SIZE - 20;
+            g.drawString(Integer.toString(current.getF()), left, top);
+            g.drawString(Integer.toString(current.getResolution()), right, top);
+            g.drawString(Integer.toString(current.getG()), left, bot);
+            g.drawString(Integer.toString(current.getH()), right, bot);
         }
     }
 

@@ -52,7 +52,7 @@ public class Astar {
 
     public boolean checkForDuplicates(Node node, List<Node> nodes) {
         for (Node value : nodes) {
-            if (node.getX() == value.getX() && node.getY() == value.getY()) {
+            if (node.equals(value)) {
                 return true;
             }
         }

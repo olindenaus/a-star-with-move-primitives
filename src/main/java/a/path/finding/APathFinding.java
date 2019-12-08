@@ -1,6 +1,7 @@
 package a.path.finding;
 
 import a.path.finding.boundary.Frame;
+import a.path.finding.control.NodeValueCalculator;
 import a.path.finding.control.PathConnector;
 import a.path.finding.entity.Node;
 import a.path.finding.orientation.Orientation;
@@ -15,6 +16,7 @@ public class APathFinding {
     private Node startNode, endNode, parent;
     private boolean running, complete;
     private PathConnector pathConnector;
+    private NodeValueCalculator nodeValueCalculator = new NodeValueCalculator();
     private OrientationDown orientationDown = new OrientationDown();
     private OrientationLeft orientationLeft = new OrientationLeft();
     private OrientationUp orientationUp = new OrientationUp();
@@ -46,6 +48,7 @@ public class APathFinding {
         running = true;
         startNode = s;
         startNode.setG(0);
+        startNode.setH(nodeValueCalculator.calculateHCost(startNode, endNode));
         parent = startNode;
         endNode = e;
         findPath(startNode);
@@ -113,32 +116,38 @@ public class APathFinding {
         } else if (parent.getOrientation() == Orientation.LEFT) {
             checkLeftOrientationMovePossibilities(parent);
         }
-        Node higherResolutionNode = new Node(parent.getX(), parent.getY(), parent.getOrientation(), parent.getResolution()+1);
+        Node higherResolutionNode = new Node(parent.getX(), parent.getY(), parent.getOrientation(), parent.getResolution() + 1);
+        higherResolutionNode.setH(parent.getH());
+        higherResolutionNode.setG(parent.getG());
         astar.addOpen(higherResolutionNode);
     }
 
     private void checkOrientationDownMovePossibilities(Node parent) {
-        hasPossibleMovements |= orientationDown.checkForwardMoveWhenOrientationDown(parent, endNode);
-        hasPossibleMovements |= orientationDown.checkLeftTurnWhenOrientationDown(parent, endNode);
-        hasPossibleMovements |= orientationDown.checkRightTurnWhenOrientationDown(parent, endNode);
+        int resolution = parent.getResolution();
+        hasPossibleMovements |= orientationDown.checkForwardMoveWhenOrientationDown(parent, endNode, resolution);
+        hasPossibleMovements |= orientationDown.checkLeftTurnWhenOrientationDown(parent, endNode, resolution);
+        hasPossibleMovements |= orientationDown.checkRightTurnWhenOrientationDown(parent, endNode, resolution);
     }
 
     private void checkRightOrientationMovePossibilities(Node parent) {
-        hasPossibleMovements |= orientationRight.checkForwardMoveWhenOrientationRight(parent, endNode);
-        hasPossibleMovements |= orientationRight.checkRightTurnWhenOrientationRight(parent, endNode);
-        hasPossibleMovements |= orientationRight.checkLeftTurnWhenOrientationRight(parent, endNode);
+        int resolution = parent.getResolution();
+        hasPossibleMovements |= orientationRight.checkForwardMoveWhenOrientationRight(parent, endNode, resolution);
+        hasPossibleMovements |= orientationRight.checkRightTurnWhenOrientationRight(parent, endNode, resolution);
+        hasPossibleMovements |= orientationRight.checkLeftTurnWhenOrientationRight(parent, endNode, resolution);
     }
 
     private void checkUpOrientationMovePossibilities(Node parent) {
-        hasPossibleMovements |= orientationUp.checkForwardMoveWhenOrientationUp(parent, endNode);
-        hasPossibleMovements |= orientationUp.checkLeftTurnWhenOrientationUp(parent, endNode);
-        hasPossibleMovements |= orientationUp.checkRightTurnWhenOrientationUp(parent, endNode);
+        int resolution = parent.getResolution();
+        hasPossibleMovements |= orientationUp.checkForwardMoveWhenOrientationUp(parent, endNode, resolution);
+        hasPossibleMovements |= orientationUp.checkLeftTurnWhenOrientationUp(parent, endNode, resolution);
+        hasPossibleMovements |= orientationUp.checkRightTurnWhenOrientationUp(parent, endNode, resolution);
     }
 
     private void checkLeftOrientationMovePossibilities(Node parent) {
-        hasPossibleMovements |= orientationLeft.checkForwardMoveWhenOrientationLeft(parent, endNode);
-        hasPossibleMovements |= orientationLeft.checkLeftTurnWhenOrientationLeft(parent, endNode);
-        hasPossibleMovements |= orientationLeft.checkRightTurnWhenOrientationLeft(parent, endNode);
+        int resolution = parent.getResolution();
+        hasPossibleMovements |= orientationLeft.checkForwardMoveWhenOrientationLeft(parent, endNode, resolution);
+        hasPossibleMovements |= orientationLeft.checkLeftTurnWhenOrientationLeft(parent, endNode, resolution);
+        hasPossibleMovements |= orientationLeft.checkRightTurnWhenOrientationLeft(parent, endNode, resolution);
     }
 
     public Node lowestFCostFromOpenNodes() {

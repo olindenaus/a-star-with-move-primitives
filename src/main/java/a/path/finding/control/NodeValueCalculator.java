@@ -15,7 +15,6 @@ public class NodeValueCalculator {
         openNode.setParent(parent);
         openNode.setG(calculateGCost(openNode, parent));
         openNode.setH(calculateHCost(openNode, endNode));
-//        openNode.setF();
         astar.addOpen(openNode);
     }
 
@@ -25,7 +24,7 @@ public class NodeValueCalculator {
         return gCost;
     }
 
-    private int calculateHCost(Node openNode, Node endNode) {
+    public int calculateHCost(Node openNode, Node endNode) {
         int hXDiff = Math.abs(endNode.getX() - openNode.getX());
         int hYDiff = Math.abs(endNode.getY() - openNode.getY());
         return hXDiff + hYDiff;

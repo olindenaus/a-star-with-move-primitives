@@ -5,206 +5,83 @@ import a.path.finding.orientation.Orientation;
 
 import java.util.List;
 
+import static a.path.finding.entity.GlobalConstants.ORIGINAL_STEP_SIZE;
 import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class CollisionChecker {
 
-    public static boolean checkTurnLeftCollisions(Node node, List<Node> obstacles, Orientation orientation) {
+    public static boolean checkTurnLeftCollisions(Node node, List<Node> obstacles, Orientation orientation, int resolution) {
         switch (orientation) {
             case DOWN:
-                return checkTurnLeftCollisionWhenOrientationDown(node, obstacles);
+                return checkBottomRightCollision(node, obstacles, resolution);
             case LEFT:
-                return checkTurnLeftCollisionWhenOrientationLeft(node, obstacles);
+                return checkBottomLeftCollision(node, obstacles, resolution);
             case UP:
-                return checkTurnLeftCollisionWhenOrientationUp(node, obstacles);
+                return checkTopLeftCollision(node, obstacles, resolution);
             case RIGHT:
-                return checkTurnLeftCollisionWhenOrientationRight(node, obstacles);
+                return checkTopRightCollision(node, obstacles, resolution);
             default:
                 return false;
         }
     }
 
-    private static boolean checkTurnLeftCollisionWhenOrientationDown(Node node, List<Node> obstacles) {
+    private static boolean checkTopRightCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        if (searchBorder(nodeX, nodeY + SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX, nodeY + 2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + SIZE, nodeY + 3 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 2 * SIZE, nodeY + 4 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 3 * SIZE, nodeY + 4 * SIZE, obstacles) != -1) {
-            return false;
+        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+            if (searchBorder(nodeX + i * SIZE, nodeY - i * SIZE, obstacles) != -1) {
+                return false;
+            }
         }
         return true;
     }
 
-    private static boolean checkTurnLeftCollisionWhenOrientationRight(Node node, List<Node> obstacles) {
+    private static boolean checkBottomLeftCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        if (searchBorder(nodeX + SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 2 * SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 3 * SIZE, nodeY + -1 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 4 * SIZE, nodeY + -2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 4 * SIZE, nodeY + -3 * SIZE, obstacles) != -1) {
-            return false;
+        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+            if (searchBorder(nodeX - i * SIZE, nodeY + i * SIZE, obstacles) != -1) {
+                return false;
+            }
         }
         return true;
     }
 
-    private static boolean checkTurnLeftCollisionWhenOrientationUp(Node node, List<Node> obstacles) {
+    private static boolean checkBottomRightCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        if (searchBorder(nodeX, nodeY + -1 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX, nodeY + -2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -1 * SIZE, nodeY + -3 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -2 * SIZE, nodeY + -4 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -3 * SIZE, nodeY + -4 * SIZE, obstacles) != -1) {
-            return false;
+        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+            if (searchBorder(nodeX + i * SIZE, nodeY + i * SIZE, obstacles) != -1) {
+                return false;
+            }
         }
         return true;
     }
 
-    private static boolean checkTurnLeftCollisionWhenOrientationLeft(Node node, List<Node> obstacles) {
+    private static boolean checkTopLeftCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        if (searchBorder(nodeX + -1 * SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -2 * SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -3 * SIZE, nodeY + SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -4 * SIZE, nodeY + 2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -4 * SIZE, nodeY + 3 * SIZE, obstacles) != -1) {
-            return false;
+        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+            if (searchBorder(nodeX - i * SIZE, nodeY - i * SIZE, obstacles) != -1) {
+                return false;
+            }
         }
         return true;
     }
 
-    public static boolean checkTurnRightCollisions(Node node, List<Node> obstacles, Orientation orientation) {
+    public static boolean checkTurnRightCollisions(Node node, List<Node> obstacles, Orientation orientation, int resolution) {
         switch (orientation) {
             case DOWN:
-                return checkTurnRightCollisionWhenOrientationDown(node, obstacles);
+                return checkBottomLeftCollision(node, obstacles, resolution);
             case LEFT:
-                return checkTurnRightCollisionWhenOrientationLeft(node, obstacles);
+                return checkTopLeftCollision(node, obstacles, resolution);
             case UP:
-                return checkTurnRightCollisionWhenOrientationUp(node, obstacles);
+                return checkTopRightCollision(node, obstacles, resolution);
             case RIGHT:
-                return checkTurnRightCollisionWhenOrientationRight(node, obstacles);
+                return checkBottomRightCollision(node, obstacles, resolution);
             default:
                 return false;
         }
-    }
-
-    private static boolean checkTurnRightCollisionWhenOrientationDown(Node node, List<Node> obstacles) {
-        int nodeX = node.getX();
-        int nodeY = node.getY();
-        if (searchBorder(nodeX, nodeY + SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX, nodeY + 2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -1 * SIZE, nodeY + 3 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -2 * SIZE, nodeY + 4 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -3 * SIZE, nodeY + 4 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean checkTurnRightCollisionWhenOrientationRight(Node node, List<Node> obstacles) {
-        int nodeX = node.getX();
-        int nodeY = node.getY();
-        if (searchBorder(nodeX + SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 2 * SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 3 * SIZE, nodeY + SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 4 * SIZE, nodeY + 2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 4 * SIZE, nodeY + 3 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean checkTurnRightCollisionWhenOrientationUp(Node node, List<Node> obstacles) {
-        int nodeX = node.getX();
-        int nodeY = node.getY();
-        if (searchBorder(nodeX, nodeY + -1 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX, nodeY + -2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + SIZE, nodeY + -3 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 2 * SIZE, nodeY + -4 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + 3 * SIZE, nodeY + -4 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        return true;
-    }
-
-    private static boolean checkTurnRightCollisionWhenOrientationLeft(Node node, List<Node> obstacles) {
-        int nodeX = node.getX();
-        int nodeY = node.getY();
-        if (searchBorder(nodeX + -1 * SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -2 * SIZE, nodeY, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -3 * SIZE, nodeY + -1 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -4 * SIZE, nodeY + -2 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        if (searchBorder(nodeX + -4 * SIZE, nodeY + -3 * SIZE, obstacles) != -1) {
-            return false;
-        }
-        return true;
     }
 
     public static boolean checkForwardCollisionsWhenOrientationDown(Node node, int targetX, int targetY, List<Node> obstacles) {
@@ -257,7 +134,6 @@ public class CollisionChecker {
 
     public static int searchBorder(int xSearch, int ySearch, List<Node> obstacles) {
         int location = -1;
-
         for (int i = 0; i < obstacles.size(); i++) {
             if (obstacles.get(i).getX() == xSearch && obstacles.get(i).getY() == ySearch) {
                 location = i;
