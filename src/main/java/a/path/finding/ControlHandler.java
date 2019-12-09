@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ControlHandler {
     private Frame frame;
     private JLabel modeText;
-    private JButton run, deleteObstacles;
+    private JButton run, deleteObstacles, saveSetup, loadSetup, clear;
     private ArrayList<JLabel> labels;
     private ArrayList<JButton> buttons;
 
@@ -44,6 +44,15 @@ public class ControlHandler {
         run.setMargin(new Insets(0, 0, 0, 0));
         run.setVisible(true);
 
+        clear = new JButton();
+        clear.setText("Clear");
+        clear.setActionCommand("clear");
+        clear.setName("clear");
+        clear.setFocusable(false);
+        clear.addActionListener(frame);
+        clear.setMargin(new Insets(0, 0, 0, 0));
+        clear.setVisible(true);
+
         deleteObstacles = new JButton();
         deleteObstacles.setText("Delete obstacles");
         deleteObstacles.setActionCommand("deleteObstacles");
@@ -52,6 +61,22 @@ public class ControlHandler {
         deleteObstacles.addActionListener(frame);
         deleteObstacles.setMargin(new Insets(0,0,0,0));
         deleteObstacles.setVisible(true);
+
+        saveSetup = new JButton();
+        saveSetup.setText("Save setup");
+        saveSetup.setName("saveSetup");
+        saveSetup.addActionListener(frame);
+        saveSetup.setActionCommand("saveSetup");
+        saveSetup.setMargin(new Insets(0,0,0,0));
+        saveSetup.setVisible(true);
+
+        loadSetup = new JButton();
+        loadSetup.setText("Load setup");
+        loadSetup.setName("loadSetup");
+        loadSetup.setActionCommand("loadSetup");
+        loadSetup.addActionListener(frame);
+        loadSetup.setMargin(new Insets(0,0,0,0));
+        loadSetup.setVisible(true);
     }
 
     public JLabel getLabelByName(String name) {
@@ -77,12 +102,18 @@ public class ControlHandler {
         modeText.setBounds(10, frame.getHeight() - 40, size.width, size.height);
         run.setBounds(10, frame.getHeight() - 60, 52, 22);
         deleteObstacles.setBounds(70, frame.getHeight() - 60, 110, 22);
+        saveSetup.setBounds(10, frame.getHeight() - 90, 80, 22);
+        loadSetup.setBounds(90, frame.getHeight() - 90, 80, 22);
+        clear.setBounds(180, frame.getHeight()-90, 50, 20);
     }
 
     public void addAllComponents() {
         frame.add(run);
         frame.add(deleteObstacles);
+        frame.add(saveSetup);
+        frame.add(loadSetup);
         frame.add(modeText);
+        frame.add(clear);
     }
 
     private void addLabels() {
@@ -92,5 +123,8 @@ public class ControlHandler {
     private void addButtons() {
         buttons.add(run);
         buttons.add(deleteObstacles);
+        buttons.add(saveSetup);
+        buttons.add(loadSetup);
+        buttons.add(clear);
     }
 }

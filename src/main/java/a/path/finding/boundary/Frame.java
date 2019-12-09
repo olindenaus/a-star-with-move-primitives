@@ -5,7 +5,11 @@ import a.path.finding.Astar;
 import a.path.finding.control.CollisionChecker;
 import a.path.finding.ControlHandler;
 import a.path.finding.control.PathConnector;
+import a.path.finding.control.SetupLoader;
+import a.path.finding.control.SetupSaver;
+import a.path.finding.entity.GlobalConstants;
 import a.path.finding.entity.Node;
+import a.path.finding.entity.Setup;
 import a.path.finding.entity.Style;
 
 import javax.swing.*;
@@ -169,7 +173,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     private void drawControlPanel(Graphics g) {
         g.setColor(Style.btnPanel);
-        g.fillRect(5, getHeight() - 70, 182, 70);
+        g.fillRect(5, getHeight() - 100, 240, 100);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -177,8 +181,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             aPathFinding.findPath(aPathFinding.getParent());
         } else if (aPathFinding.isComplete()) {
             stage = "Finished";
-            controlHandler.getButtonByName("run").setText("clear");
-            controlHandler.getButtonByName("run").setActionCommand("clear");
             timer.stop();
         }
         handleButtonClick(e);
@@ -188,11 +190,23 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         if (e.getActionCommand() != null) {
             if (e.getActionCommand().equals("run") && !aPathFinding.isRunning()) {
                 runSimulation();
-            } else if (e.getActionCommand().equals("clear")) {
-                aPathFinding.reset();
-                controlHandler.getButtonByName("run").setText("run");
-                controlHandler.getButtonByName("run").setActionCommand("run");
-                stage = "Map Creation";
+            } else if(e.getActionCommand().equals("run")) {
+                continuePathFinding();
+            }
+            else if(e.getActionCommand().equals("stop")) {
+                stopPathFinding();
+            }
+            else if (e.getActionCommand().equals("clear")) {
+                resetBoard();
+            } else if(e.getActionCommand().equals("saveSetup")) {
+                Setup setup = new Setup(astar, startNode, endNode);
+                SetupSaver.saveSetup(setup);
+            } else if(e.getActionCommand().equals("loadSetup")) {
+                Setup setup = SetupLoader.loadSetup();
+                GlobalConstants.updateSetup(setup);
+                astar.update(setup);
+                startNode = setup.getStartNode();
+                endNode = setup.getEndNode();
             }
             if(e.getActionCommand().equals("deleteObstacles")) {
                 clearWalls();
@@ -201,8 +215,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         repaint();
     }
 
+    private void continuePathFinding() {
+        controlHandler.getButtonByName("run").setText("stop");
+        controlHandler.getButtonByName("run").setActionCommand("stop");
+        timer.restart();
+    }
+
+    private void stopPathFinding() {
+        controlHandler.getButtonByName("run").setText("run");
+        controlHandler.getButtonByName("run").setActionCommand("run");
+        timer.stop();
+    }
+
+    private void resetBoard() {
+        aPathFinding.reset();
+        stage = "Map Creation";
+    }
+
     private void runSimulation() {
         controlHandler.getButtonByName("run").setText("stop");
+        controlHandler.getButtonByName("run").setActionCommand("stop");
         stage = "Running";
         start();
     }

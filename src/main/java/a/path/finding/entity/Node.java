@@ -2,12 +2,13 @@ package a.path.finding.entity;
 
 import a.path.finding.orientation.Orientation;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import static a.path.finding.entity.GlobalConstants.RESOLUTION_PENALTY;
 import static a.path.finding.entity.GlobalConstants.SIZE;
 
-public class Node {
+public class Node implements Serializable {
     private int x, y, g, h, f;
     private Node parent;
     private Orientation orientation;
@@ -135,5 +136,31 @@ public class Node {
                 ", or=" + orientation +
                 ", res=" + resolution +
                 '}';
+    }
+
+    public String toCsv() {
+        return x + "," +
+                y + "," +
+                g + "," +
+                h + "," +
+                f + "," +
+                orientation.ordinal() + "," +
+                resolution;
+    }
+
+    public Node fromCsv(String line) {
+        String[] values = line.split(",");
+        int x = Integer.parseInt(values[0]);
+        int y = Integer.parseInt(values[1]);
+        Orientation orientation = Orientation.values()[Integer.parseInt(values[5])];
+        int g = Integer.parseInt(values[2]);
+        int h = Integer.parseInt(values[3]);
+        int f = Integer.parseInt(values[4]);
+        int resolution = Integer.parseInt(values[6]);
+        Node node = new Node(x, y, orientation, resolution);
+        node.f = f;
+        node.g = g;
+        node.h = h;
+        return node;
     }
 }

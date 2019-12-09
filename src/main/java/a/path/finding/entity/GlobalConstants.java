@@ -2,8 +2,15 @@ package a.path.finding.entity;
 
 public class GlobalConstants {
 
-    public static final int SIZE = 50;
-    public static final int RESOLUTION_PENALTY = 200;
-    public static final int TIME_INTERVAL = 10;
-    public static final int ORIGINAL_STEP_SIZE = 6;
+    public static int SIZE = 30;
+    public static int TIME_INTERVAL = 300;
+    public static int RESOLUTION_PENALTY = 200;
+    public static int ORIGINAL_STEP_SIZE = 6;
+
+    public static void updateSetup(Setup setup) {
+        SIZE = setup.getBoardSize();
+        TIME_INTERVAL = setup.getTimeInterval();
+        RESOLUTION_PENALTY = setup.getResolutionPenalty();
+        ORIGINAL_STEP_SIZE = setup.getOriginalStepSize();
+    }
 }

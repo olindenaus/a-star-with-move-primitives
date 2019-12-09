@@ -1,6 +1,7 @@
 package a.path.finding;
 
 import a.path.finding.entity.Node;
+import a.path.finding.entity.Setup;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,6 +27,10 @@ public class Astar {
     public void reset() {
         open.clear();
         closed.clear();
+    }
+
+    public void update(Setup setup) {
+        obstacles = setup.getBorders();
     }
 
     private Astar() {
