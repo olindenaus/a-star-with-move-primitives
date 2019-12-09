@@ -23,7 +23,13 @@ public class Astar {
         return open;
     }
 
-    private Astar() {}
+    public void reset() {
+        open.clear();
+        closed.clear();
+    }
+
+    private Astar() {
+    }
 
     public static Astar getInstance() {
         return instance;

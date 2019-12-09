@@ -18,6 +18,11 @@ import static a.path.finding.entity.GlobalConstants.TIME_INTERVAL;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
+    /**
+     * more complex scenarios
+     * case studies
+     * */
+
     ControlHandler controlHandler;
     JFrame window;
     APathFinding aPathFinding;
@@ -173,6 +178,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         } else if (aPathFinding.isComplete()) {
             stage = "Finished";
             controlHandler.getButtonByName("run").setText("clear");
+            controlHandler.getButtonByName("run").setActionCommand("clear");
             timer.stop();
         }
         handleButtonClick(e);
@@ -183,9 +189,10 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             if (e.getActionCommand().equals("run") && !aPathFinding.isRunning()) {
                 runSimulation();
             } else if (e.getActionCommand().equals("clear")) {
-                controlHandler.getButtonByName("run").setText("run");
-                stage = "Map Creation";
                 aPathFinding.reset();
+                controlHandler.getButtonByName("run").setText("run");
+                controlHandler.getButtonByName("run").setActionCommand("run");
+                stage = "Map Creation";
             }
             if(e.getActionCommand().equals("deleteObstacles")) {
                 clearWalls();

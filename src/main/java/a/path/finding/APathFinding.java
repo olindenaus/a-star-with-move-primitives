@@ -55,8 +55,7 @@ public class APathFinding {
     }
 
     public void reset() {
-        astar.getOpenNodes().clear();
-        astar.getClosedList().clear();
+        astar.reset();
         pathConnector.getPath().clear();
         running = false;
         complete = false;

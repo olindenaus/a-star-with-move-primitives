@@ -88,7 +88,7 @@ public class Node {
     }
 
     public void setF() {
-        this.f = h + g + resolution*RESOLUTION_PENALTY;
+        this.f = h + g + resolution * RESOLUTION_PENALTY;
     }
 
     @Override
