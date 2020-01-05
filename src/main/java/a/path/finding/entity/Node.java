@@ -111,10 +111,6 @@ public class Node implements Serializable {
         this.parent = parent;
     }
 
-    public void setResolution(int resolution) {
-        this.resolution = resolution;
-    }
-
     public static boolean isEqual(Node s, Node e) {
         return s.getX() == e.getX() && s.getY() == e.getY();
     }

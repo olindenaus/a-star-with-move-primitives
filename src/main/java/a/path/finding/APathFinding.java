@@ -115,10 +115,12 @@ public class APathFinding {
         } else if (parent.getOrientation() == Orientation.LEFT) {
             checkLeftOrientationMovePossibilities(parent);
         }
-        Node higherResolutionNode = new Node(parent.getX(), parent.getY(), parent.getOrientation(), parent.getResolution() + 1);
-        higherResolutionNode.setH(parent.getH());
-        higherResolutionNode.setG(parent.getG());
-        astar.addOpen(higherResolutionNode);
+        if (parent.getResolution() != 6) {
+            Node higherResolutionNode = new Node(parent.getX(), parent.getY(), parent.getOrientation(), parent.getResolution() + 1);
+            higherResolutionNode.setH(parent.getH());
+            higherResolutionNode.setG(parent.getG());
+            astar.addOpen(higherResolutionNode);
+        }
     }
 
     private void checkOrientationDownMovePossibilities(Node parent) {
