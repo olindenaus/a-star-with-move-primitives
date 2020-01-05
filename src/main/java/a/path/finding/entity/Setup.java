@@ -5,6 +5,8 @@ import a.path.finding.Astar;
 import java.io.Serializable;
 import java.util.List;
 
+import static a.path.finding.entity.GlobalConstants.*;
+
 public class Setup implements Serializable {
 
     private List<Node> borders;
@@ -59,10 +61,10 @@ public class Setup implements Serializable {
     }
 
     public Setup() {
-        this.boardSize = 50;
-        this.resolutionPenalty = 200;
-        this.timeInterval = 300;
-        this.originalStepSize = 6;
+        this.boardSize = SIZE;
+        this.resolutionPenalty = RESOLUTION_PENALTY;
+        this.timeInterval = TIME_INTERVAL;
+        this.originalStepSize = ORIGINAL_STEP_SIZE;
     }
 
     public Setup(Builder builder) {

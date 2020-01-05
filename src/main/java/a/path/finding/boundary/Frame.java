@@ -129,10 +129,11 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void drawArc(Graphics g, Node current, Node next) {
-        int startX = current.getX();
-        int startY = current.getY();
-        int endX = next.getX();
-        int endY = next.getY();
+        int offset = SIZE/2;
+        int startX = current.getX() + offset;
+        int startY = current.getY() + offset;
+        int endX = next.getX() + offset;
+        int endY = next.getY() + offset;
         g.setColor(Style.darkText);
         g.drawLine(startX, startY, endX, endY);
     }

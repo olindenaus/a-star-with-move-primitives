@@ -28,7 +28,7 @@ public class CollisionChecker {
     private static boolean checkTopRightCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+        for (int i = 1; i <= ORIGINAL_STEP_SIZE / resolution; i++) {
             if (searchBorder(nodeX + i * SIZE, nodeY - i * SIZE, obstacles) != -1) {
                 return false;
             }
@@ -39,7 +39,7 @@ public class CollisionChecker {
     private static boolean checkBottomLeftCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+        for (int i = 1; i <= ORIGINAL_STEP_SIZE / resolution; i++) {
             if (searchBorder(nodeX - i * SIZE, nodeY + i * SIZE, obstacles) != -1) {
                 return false;
             }
@@ -50,7 +50,7 @@ public class CollisionChecker {
     private static boolean checkBottomRightCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+        for (int i = 1; i <= ORIGINAL_STEP_SIZE / resolution; i++) {
             if (searchBorder(nodeX + i * SIZE, nodeY + i * SIZE, obstacles) != -1) {
                 return false;
             }
@@ -61,7 +61,7 @@ public class CollisionChecker {
     private static boolean checkTopLeftCollision(Node node, List<Node> obstacles, int resolution) {
         int nodeX = node.getX();
         int nodeY = node.getY();
-        for (int i = 0; i < ORIGINAL_STEP_SIZE / resolution; i++) {
+        for (int i = 1; i <= ORIGINAL_STEP_SIZE / resolution; i++) {
             if (searchBorder(nodeX - i * SIZE, nodeY - i * SIZE, obstacles) != -1) {
                 return false;
             }

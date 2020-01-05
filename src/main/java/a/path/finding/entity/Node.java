@@ -5,8 +5,7 @@ import a.path.finding.orientation.Orientation;
 import java.io.Serializable;
 import java.util.Objects;
 
-import static a.path.finding.entity.GlobalConstants.RESOLUTION_PENALTY;
-import static a.path.finding.entity.GlobalConstants.SIZE;
+import static a.path.finding.entity.GlobalConstants.*;
 
 public class Node implements Serializable {
     private int x, y, g, h, f;
@@ -32,7 +31,7 @@ public class Node implements Serializable {
         this.x = x;
         this.y = y;
         this.orientation = orientation;
-        this.resolution = Math.min(resolution, 3);
+        this.resolution = resolution > 3 ? ORIGINAL_STEP_SIZE : resolution;
     }
 
     public Orientation getOrientation() {
