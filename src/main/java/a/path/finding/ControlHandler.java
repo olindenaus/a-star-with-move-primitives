@@ -1,6 +1,7 @@
 package a.path.finding;
 
 import a.path.finding.boundary.Frame;
+import a.path.finding.entity.GlobalConstants;
 import a.path.finding.entity.Style;
 
 import javax.swing.*;
@@ -9,23 +10,27 @@ import java.util.ArrayList;
 
 import static a.path.finding.entity.GlobalConstants.*;
 
-
 public class ControlHandler {
     private Frame frame;
     private JLabel modeText, timeInterval, resolutionPenalty;
-    private JButton run, deleteObstacles, saveSetup, loadSetup, clear;
+    private JTextField tiTextField, rpTextField;
+    private JButton run, deleteObstacles, saveSetup, loadSetup, clear, change;
     private ArrayList<JLabel> labels;
     private ArrayList<JButton> buttons;
+    private ArrayList<JTextField> textFields;
 
     public ControlHandler(Frame frame) {
         this.frame = frame;
         labels = new ArrayList<>();
         buttons = new ArrayList<>();
+        textFields = new ArrayList<>();
 
         setUpLabels();
         setUpButtons();
+        setUpTextFields();
         addLabels();
         addButtons();
+        addTextFields();
     }
 
     private void setUpLabels() {
@@ -46,6 +51,21 @@ public class ControlHandler {
         timeInterval.setFont(Style.numbers);
         timeInterval.setForeground(Style.darkText);
         timeInterval.setVisible(true);
+    }
+
+    private void setUpTextFields() {
+        rpTextField = new JTextField();
+        rpTextField.setName("resolutionPenalty");
+        rpTextField.setVisible(true);
+
+        tiTextField = new JTextField();
+        tiTextField.setName("timeInterval");
+        tiTextField.setVisible(true);
+    }
+
+    private void addTextFields() {
+        textFields.add(rpTextField);
+        textFields.add(tiTextField);
     }
 
     private void setUpButtons() {
@@ -91,6 +111,24 @@ public class ControlHandler {
         loadSetup.addActionListener(frame);
         loadSetup.setMargin(new Insets(0, 0, 0, 0));
         loadSetup.setVisible(true);
+
+        change = new JButton();
+        change.setText("Change RP & TI");
+        change.setActionCommand("change");
+        change.setName("change");
+        change.setFocusable(false);
+        change.addActionListener(frame);
+        change.setMargin(new Insets(0, 0, 0, 0));
+        change.setVisible(true);
+    }
+
+    public JTextField getTextFieldByName(String name) {
+        for (int i = 0; i < textFields.size(); i++) {
+            if (textFields.get(i).getName().equals(name)) {
+                return textFields.get(i);
+            }
+        }
+        return null;
     }
 
     public JLabel getLabelByName(String name) {
@@ -114,13 +152,16 @@ public class ControlHandler {
     public void positionElements() {
         Dimension size = modeText.getPreferredSize();
         modeText.setBounds(10, frame.getHeight() - 40, size.width, size.height);
-        resolutionPenalty.setBounds(200, frame.getHeight() - 50, 100, 20);
-        timeInterval.setBounds(200, frame.getHeight() - 30, 100, 20);
-        run.setBounds(10, frame.getHeight() - 60, 52, 22);
-        deleteObstacles.setBounds(70, frame.getHeight() - 60, 110, 22);
-        saveSetup.setBounds(10, frame.getHeight() - 90, 80, 22);
-        loadSetup.setBounds(90, frame.getHeight() - 90, 80, 22);
-        clear.setBounds(180, frame.getHeight() - 90, 50, 20);
+        run.setBounds(10, frame.getHeight() - 70, 55, 22);
+        deleteObstacles.setBounds(70, frame.getHeight() - 70, 110, 22);
+        saveSetup.setBounds(10, frame.getHeight() - 110, 80, 22);
+        loadSetup.setBounds(100, frame.getHeight() - 110, 80, 22);
+        clear.setBounds(200, frame.getHeight() - 110, 50, 20);
+        rpTextField.setBounds(210, frame.getHeight() - 85, 50, 20);
+        resolutionPenalty.setBounds(265, frame.getHeight() - 85, 50, 20);
+        tiTextField.setBounds(210, frame.getHeight() - 60, 50, 20);
+        timeInterval.setBounds(265, frame.getHeight() - 60, 50, 20);
+        change.setBounds(200, frame.getHeight() - 30, 100, 20);
     }
 
     public void updateLabels() {
@@ -135,6 +176,9 @@ public class ControlHandler {
         frame.add(loadSetup);
         frame.add(modeText);
         frame.add(timeInterval);
+        frame.add(tiTextField);
+        frame.add(rpTextField);
+        frame.add(change);
         frame.add(resolutionPenalty);
         frame.add(clear);
     }
@@ -151,5 +195,14 @@ public class ControlHandler {
         buttons.add(saveSetup);
         buttons.add(loadSetup);
         buttons.add(clear);
+        buttons.add(change);
+    }
+
+    public void changeRpAndTi() {
+        int rp = Integer.parseInt(rpTextField.getText());
+        int ti = Integer.parseInt(tiTextField.getText());
+        GlobalConstants.updateResolutionPenalty(rp);
+        GlobalConstants.updateTimeInterval(ti);
+        updateLabels();
     }
 }

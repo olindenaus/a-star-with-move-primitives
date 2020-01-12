@@ -110,7 +110,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         for (int i = 0; i < pathNodes.size(); i++) {
             Node current = pathNodes.get(i);
             if (i != pathNodes.size() - 1) {
-                Node next = pathNodes.get(i+1);
+                Node next = pathNodes.get(i + 1);
                 drawArc(g, current, next);
             }
             g.setColor(Style.blueHighlight);
@@ -120,7 +120,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void drawArc(Graphics g, Node current, Node next) {
-        int offset = SIZE/2;
+        int offset = SIZE / 2;
         int startX = current.getX() + offset;
         int startY = current.getY() + offset;
         int endX = next.getX() + offset;
@@ -165,7 +165,8 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     private void drawControlPanel(Graphics g) {
         g.setColor(Style.btnPanel);
-        g.fillRect(5, getHeight() - 100, 240, 100);
+        int panelHeight = 120;
+        g.fillRect(5, getHeight() - panelHeight, 320, panelHeight);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -182,26 +183,26 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         if (e.getActionCommand() != null) {
             if (e.getActionCommand().equals("run") && !aPathFinding.isRunning()) {
                 runSimulation();
-            } else if(e.getActionCommand().equals("run")) {
+            } else if (e.getActionCommand().equals("run")) {
                 continuePathFinding();
-            }
-            else if(e.getActionCommand().equals("stop")) {
+            } else if (e.getActionCommand().equals("stop")) {
                 stopPathFinding();
-            }
-            else if (e.getActionCommand().equals("clear")) {
+            } else if (e.getActionCommand().equals("clear")) {
                 resetBoard();
-            } else if(e.getActionCommand().equals("saveSetup")) {
+            } else if (e.getActionCommand().equals("saveSetup")) {
                 Setup setup = new Setup(astar, startNode, endNode);
                 SetupSaver.saveSetup(setup);
-            } else if(e.getActionCommand().equals("loadSetup")) {
+            } else if (e.getActionCommand().equals("loadSetup")) {
                 Setup setup = SetupLoader.loadSetup();
                 GlobalConstants.updateSetup(setup);
                 controlHandler.updateLabels();
                 astar.update(setup);
                 startNode = setup.getStartNode();
                 endNode = setup.getEndNode();
+            } else if(e.getActionCommand().equals("change")) {
+                controlHandler.changeRpAndTi();
             }
-            if(e.getActionCommand().equals("deleteObstacles")) {
+            if (e.getActionCommand().equals("deleteObstacles")) {
                 clearWalls();
             }
         }
@@ -233,6 +234,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void start() {
+        timer.setDelay(TIME_INTERVAL);
         aPathFinding.start(startNode, endNode);
         timer.start();
     }

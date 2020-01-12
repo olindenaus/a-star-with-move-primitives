@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a8a5bc80-f1a1-48f6-acc1-29c575035afa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_12_10_42_25_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_12_10_42_25_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_12_10_43_12_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_12_10_43_12_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_12_10_43_58_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/01_12_10_43_58_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/Style.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/Style.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +103,7 @@
       <workItem from="1578069059264" duration="32000" />
       <workItem from="1578223853275" duration="7691000" />
       <workItem from="1578420626184" duration="36000" />
-      <workItem from="1578836591015" duration="6161000" />
+      <workItem from="1578836591015" duration="10121000" />
     </task>
     <servers />
   </component>
@@ -133,24 +127,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/orientation/OrientationLeft.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/orientation/OrientationLeft.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/control/CollisionChecker.java</url>
-          <line>111</line>
-          <option name="timeStamp" value="8" />
+          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java</url>
+          <line>201</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
