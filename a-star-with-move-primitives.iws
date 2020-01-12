@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="25d633dd-0199-4c63-b769-fad728053bc2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/01_12_10_42_25_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_12_10_42_25_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_12_10_43_12_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_12_10_43_12_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_12_10_43_58_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/01_12_10_43_58_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tunnel-shape-with-shortcut.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tunnel-shape-with-shortcut.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tunnel-shape.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tunnel-shape.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/U-shape-fixed.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/U-shape-fixed.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/U-shape-with-skipping-bug.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a-star-with-move-primitives.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a-star-with-move-primitives.ipr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/a-star-with-move-primitives.iws" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/APathFinding.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/Astar.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/ControlHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/boundary/Frame.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/CollisionChecker$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/CollisionChecker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/NodeValueCalculator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/PathConnector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/SetupLoader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/SetupSaver.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/GlobalConstants.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/Node.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/Setup$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/Setup.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/Style.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/orientation/Orientation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/orientation/OrientationDown.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/orientation/OrientationLeft.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/orientation/OrientationRight.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/orientation/OrientationUp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skipped-obstacle-similar-3.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skipped-obstacle-similar-3.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skipped-obstacle-similar.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skipped-obstacle-similar.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skipped-obstacle.PNG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skipped-obstacle.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1W10of1Qi7zNZoXDKogvFBz3gET" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="ignore.virus.scanning.warn.message" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="a.path.finding.boundary.Frame" />
+      <module name="a-star-with-move-primitives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="a.path.finding.boundary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Frame" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="25d633dd-0199-4c63-b769-fad728053bc2" name="Default Changelist" comment="" />
+      <created>1578301969573</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578301969573</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1578822340525">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578822340525" />
+    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1578822340524">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578822340524" />
+    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1578822340524">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578822340524" />
+    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1578822340525">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578822340525" />
+  </component>
+</project>
