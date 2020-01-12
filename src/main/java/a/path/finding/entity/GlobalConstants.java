@@ -12,5 +12,6 @@ public class GlobalConstants {
         TIME_INTERVAL = setup.getTimeInterval();
         RESOLUTION_PENALTY = setup.getResolutionPenalty();
         ORIGINAL_STEP_SIZE = setup.getOriginalStepSize();
+
     }
 }

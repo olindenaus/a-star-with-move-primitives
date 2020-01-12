@@ -7,10 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static a.path.finding.entity.GlobalConstants.*;
+
 
 public class ControlHandler {
     private Frame frame;
-    private JLabel modeText;
+    private JLabel modeText, timeInterval, resolutionPenalty;
     private JButton run, deleteObstacles, saveSetup, loadSetup, clear;
     private ArrayList<JLabel> labels;
     private ArrayList<JButton> buttons;
@@ -32,6 +34,18 @@ public class ControlHandler {
         modeText.setFont(Style.bigText);
         modeText.setForeground(Style.darkText);
         modeText.setVisible(true);
+
+        resolutionPenalty = new JLabel("RP: " + RESOLUTION_PENALTY);
+        resolutionPenalty.setName("resolutionPenalty");
+        resolutionPenalty.setFont(Style.numbers);
+        resolutionPenalty.setForeground(Style.darkText);
+        resolutionPenalty.setVisible(true);
+
+        timeInterval = new JLabel("TI: " + TIME_INTERVAL);
+        timeInterval.setName("timeInterval");
+        timeInterval.setFont(Style.numbers);
+        timeInterval.setForeground(Style.darkText);
+        timeInterval.setVisible(true);
     }
 
     private void setUpButtons() {
@@ -59,7 +73,7 @@ public class ControlHandler {
         deleteObstacles.setName("deleteObstacles");
         deleteObstacles.setFocusable(false);
         deleteObstacles.addActionListener(frame);
-        deleteObstacles.setMargin(new Insets(0,0,0,0));
+        deleteObstacles.setMargin(new Insets(0, 0, 0, 0));
         deleteObstacles.setVisible(true);
 
         saveSetup = new JButton();
@@ -67,7 +81,7 @@ public class ControlHandler {
         saveSetup.setName("saveSetup");
         saveSetup.addActionListener(frame);
         saveSetup.setActionCommand("saveSetup");
-        saveSetup.setMargin(new Insets(0,0,0,0));
+        saveSetup.setMargin(new Insets(0, 0, 0, 0));
         saveSetup.setVisible(true);
 
         loadSetup = new JButton();
@@ -75,7 +89,7 @@ public class ControlHandler {
         loadSetup.setName("loadSetup");
         loadSetup.setActionCommand("loadSetup");
         loadSetup.addActionListener(frame);
-        loadSetup.setMargin(new Insets(0,0,0,0));
+        loadSetup.setMargin(new Insets(0, 0, 0, 0));
         loadSetup.setVisible(true);
     }
 
@@ -100,11 +114,18 @@ public class ControlHandler {
     public void positionElements() {
         Dimension size = modeText.getPreferredSize();
         modeText.setBounds(10, frame.getHeight() - 40, size.width, size.height);
+        resolutionPenalty.setBounds(200, frame.getHeight() - 50, 100, 20);
+        timeInterval.setBounds(200, frame.getHeight() - 30, 100, 20);
         run.setBounds(10, frame.getHeight() - 60, 52, 22);
         deleteObstacles.setBounds(70, frame.getHeight() - 60, 110, 22);
         saveSetup.setBounds(10, frame.getHeight() - 90, 80, 22);
         loadSetup.setBounds(90, frame.getHeight() - 90, 80, 22);
-        clear.setBounds(180, frame.getHeight()-90, 50, 20);
+        clear.setBounds(180, frame.getHeight() - 90, 50, 20);
+    }
+
+    public void updateLabels() {
+        resolutionPenalty.setText("RP: " + RESOLUTION_PENALTY);
+        timeInterval.setText("TI: " + TIME_INTERVAL);
     }
 
     public void addAllComponents() {
@@ -113,11 +134,15 @@ public class ControlHandler {
         frame.add(saveSetup);
         frame.add(loadSetup);
         frame.add(modeText);
+        frame.add(timeInterval);
+        frame.add(resolutionPenalty);
         frame.add(clear);
     }
 
     private void addLabels() {
         labels.add(modeText);
+        labels.add(timeInterval);
+        labels.add(resolutionPenalty);
     }
 
     private void addButtons() {

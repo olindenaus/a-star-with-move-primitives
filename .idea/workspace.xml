@@ -2,35 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a8a5bc80-f1a1-48f6-acc1-29c575035afa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/a-star.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/APathFinding.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/Astar.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/ControlHandler.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/boundary/Frame.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/CollisionChecker$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/CollisionChecker.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/NodeValueCalculator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/PathConnector.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/SetupLoader.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/SetupSaver.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/GlobalConstants.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Node.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Setup$Builder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Setup.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Style.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/Orientation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationDown.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationLeft.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationRight.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationUp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar-3.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar-3.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipped-obstacle.PNG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/skipped-obstacle.ser" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/control/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/control/CollisionChecker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_12_10_42_25_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_12_10_42_25_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_12_10_43_12_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_12_10_43_12_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_12_10_43_58_bSize-20__resPenalty-20__tInterval-1__stepSize-6.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/01_12_10_43_58_bSize-20__resPenalty-20__tInterval-1__stepSize-6.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/Style.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/Style.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,10 +37,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\oskli\IdeaProjects\a-star" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -122,7 +109,7 @@
       <workItem from="1578069059264" duration="32000" />
       <workItem from="1578223853275" duration="7691000" />
       <workItem from="1578420626184" duration="36000" />
-      <workItem from="1578836591015" duration="2779000" />
+      <workItem from="1578836591015" duration="6161000" />
     </task>
     <servers />
   </component>

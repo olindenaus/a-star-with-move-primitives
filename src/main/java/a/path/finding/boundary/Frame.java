@@ -21,12 +21,6 @@ import static a.path.finding.entity.GlobalConstants.SIZE;
 import static a.path.finding.entity.GlobalConstants.TIME_INTERVAL;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
-
-    /**
-     * more complex scenarios
-     * case studies
-     * */
-
     ControlHandler controlHandler;
     JFrame window;
     APathFinding aPathFinding;
@@ -53,12 +47,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-
         aPathFinding = new APathFinding(this, startNode, endNode, pathConnector);
         setupWindow();
-
         controlHandler.addAllComponents();
-
         this.revalidate();
         this.repaint();
     }
@@ -149,7 +140,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     public void drawInfo(Node current, Graphics g) {
         if (SIZE > 49) {
-            g.setFont(Style.smallNumbers);
+            g.setFont(Style.smallText);
             g.setColor(Color.black);
             int top = current.getY() + 16;
             int bot = current.getY() + SIZE - 7;
@@ -205,6 +196,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             } else if(e.getActionCommand().equals("loadSetup")) {
                 Setup setup = SetupLoader.loadSetup();
                 GlobalConstants.updateSetup(setup);
+                controlHandler.updateLabels();
                 astar.update(setup);
                 startNode = setup.getStartNode();
                 endNode = setup.getEndNode();
