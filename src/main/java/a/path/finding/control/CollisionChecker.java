@@ -40,7 +40,9 @@ public class CollisionChecker {
         int nodeX = node.getX();
         int nodeY = node.getY();
         for (int i = 1; i <= ORIGINAL_STEP_SIZE / resolution; i++) {
-            if (searchBorder(nodeX - i * SIZE, nodeY + i * SIZE, obstacles) != -1) {
+            int xSearch = nodeX - i * SIZE;
+            int ySearch = nodeY + i * SIZE;
+            if (searchBorder(xSearch, ySearch, obstacles) != -1) {
                 return false;
             }
         }
@@ -87,8 +89,7 @@ public class CollisionChecker {
     public static boolean checkForwardCollisionsWhenOrientationDown(Node node, int targetX, int targetY, List<Node> obstacles) {
         int nodeY = node.getY();
         int yDiff = targetY - nodeY;
-        int inc = yDiff / SIZE;
-        for (int i = inc; i <= yDiff; i += inc) {
+        for (int i = SIZE; i <= yDiff; i += SIZE) {
             if (searchBorder(targetX, nodeY + i, obstacles) != -1) {
                 return false;
             }
@@ -99,8 +100,7 @@ public class CollisionChecker {
     public static boolean checkForwardCollisionsWhenOrientationUp(Node node, int targetX, int targetY, List<Node> obstacles) {
         int nodeY = node.getY();
         int yDiff = Math.abs(targetY - nodeY);
-        int inc = yDiff / SIZE;
-        for (int i = inc; i <= yDiff; i += inc) {
+        for (int i = SIZE; i <= yDiff; i += SIZE) {
             if (searchBorder(targetX, nodeY - i, obstacles) != -1) {
                 return false;
             }
@@ -111,8 +111,7 @@ public class CollisionChecker {
     public static boolean checkForwardCollisionsWhenOrientationLeft(Node node, int targetX, int targetY, List<Node> obstacles) {
         int nodeX = node.getX();
         int xDiff = Math.abs(targetX - nodeX);
-        int inc = xDiff / SIZE;
-        for (int i = inc; i <= xDiff; i += inc) {
+        for (int i = SIZE; i <= xDiff; i += SIZE) {
             if (searchBorder(nodeX - i, targetY, obstacles) != -1) {
                 return false;
             }
@@ -123,8 +122,7 @@ public class CollisionChecker {
     public static boolean checkForwardCollisionsWhenOrientationRight(Node node, int targetX, int targetY, List<Node> obstacles) {
         int nodeX = node.getX();
         int xDiff = targetX - nodeX;
-        int inc = xDiff / SIZE;
-        for (int i = inc; i <= xDiff; i += inc) {
+        for (int i = SIZE; i <= xDiff; i += SIZE) {
             if (searchBorder(nodeX + i, targetY, obstacles) != -1) {
                 return false;
             }

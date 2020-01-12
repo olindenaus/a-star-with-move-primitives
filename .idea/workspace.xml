@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8a5bc80-f1a1-48f6-acc1-29c575035afa" name="Default Changelist" comment="" />
+    <list default="true" id="a8a5bc80-f1a1-48f6-acc1-29c575035afa" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/a-star.kotlin_module" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/APathFinding.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/Astar.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/ControlHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/boundary/Frame.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/CollisionChecker$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/CollisionChecker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/NodeValueCalculator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/PathConnector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/SetupLoader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/control/SetupSaver.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/GlobalConstants.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Node.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Setup$Builder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Setup.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/entity/Style.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/Orientation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationDown.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationLeft.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationRight.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/a/path/finding/orientation/OrientationUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar-3.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar-3.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skipped-obstacle-similar.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skipped-obstacle.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skipped-obstacle.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/control/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/control/CollisionChecker.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +46,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1T9LDfqpz3itx8jamZkBmDGRZWe" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -39,7 +75,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="a.path.finding.Frame" />
+      <option name="MAIN_CLASS_NAME" value="a.path.finding.boundary.Frame" />
       <module name="a-star" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -71,11 +107,65 @@
       <workItem from="1573406140403" duration="116000" />
       <workItem from="1573408092881" duration="933000" />
       <workItem from="1573549916155" duration="3877000" />
-      <workItem from="1573585264802" duration="675000" />
+      <workItem from="1573585264802" duration="1244000" />
+      <workItem from="1574089092615" duration="1216000" />
+      <workItem from="1574092583674" duration="5554000" />
+      <workItem from="1574098162671" duration="5740000" />
+      <workItem from="1574103934778" duration="122000" />
+      <workItem from="1574174794372" duration="5741000" />
+      <workItem from="1574540438756" duration="131000" />
+      <workItem from="1574541063824" duration="621000" />
+      <workItem from="1574589548093" duration="269000" />
+      <workItem from="1575794043679" duration="9611000" />
+      <workItem from="1575889338049" duration="4036000" />
+      <workItem from="1575903085463" duration="4410000" />
+      <workItem from="1578069059264" duration="32000" />
+      <workItem from="1578223853275" duration="7691000" />
+      <workItem from="1578420626184" duration="36000" />
+      <workItem from="1578836591015" duration="2779000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/orientation/OrientationLeft.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/orientation/OrientationLeft.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/control/CollisionChecker.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
