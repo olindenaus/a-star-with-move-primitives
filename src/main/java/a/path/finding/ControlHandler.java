@@ -12,7 +12,7 @@ import static a.path.finding.entity.GlobalConstants.*;
 
 public class ControlHandler {
     private Frame frame;
-    private JLabel modeText, timeInterval, resolutionPenalty;
+    private JLabel modeText, timeInterval, resolutionPenalty, howManyNodes;
     private JTextField tiTextField, rpTextField;
     private JButton run, deleteObstacles, saveSetup, loadSetup, clear, change;
     private ArrayList<JLabel> labels;
@@ -51,6 +51,12 @@ public class ControlHandler {
         timeInterval.setFont(Style.numbers);
         timeInterval.setForeground(Style.darkText);
         timeInterval.setVisible(true);
+
+        howManyNodes = new JLabel("Nodes: 0");
+        howManyNodes.setName("howManyNodes");
+        howManyNodes.setFont(Style.numbers);
+        howManyNodes.setForeground(Style.darkText);
+        howManyNodes.setVisible(true);
     }
 
     private void setUpTextFields() {
@@ -162,6 +168,7 @@ public class ControlHandler {
         tiTextField.setBounds(210, frame.getHeight() - 60, 50, 20);
         timeInterval.setBounds(265, frame.getHeight() - 60, 50, 20);
         change.setBounds(200, frame.getHeight() - 30, 100, 20);
+        howManyNodes.setBounds(200, frame.getHeight() - 10, 90, 10);
     }
 
     public void updateLabels() {
@@ -180,6 +187,7 @@ public class ControlHandler {
         frame.add(rpTextField);
         frame.add(change);
         frame.add(resolutionPenalty);
+        frame.add(howManyNodes);
         frame.add(clear);
     }
 
@@ -187,6 +195,7 @@ public class ControlHandler {
         labels.add(modeText);
         labels.add(timeInterval);
         labels.add(resolutionPenalty);
+        labels.add(howManyNodes);
     }
 
     private void addButtons() {

@@ -47,7 +47,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        aPathFinding = new APathFinding(this, startNode, endNode, pathConnector);
+        aPathFinding = new APathFinding(this, startNode, endNode, pathConnector, controlHandler);
         setupWindow();
         controlHandler.addAllComponents();
         this.revalidate();

@@ -3,7 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="25d633dd-0199-4c63-b769-fad728053bc2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/a-star-with-move-primitives.iws" beforeDir="false" afterPath="$PROJECT_DIR$/a-star-with-move-primitives.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/ControlHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/ControlHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/boundary/Frame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/boundary/Frame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/CollisionChecker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/control/CollisionChecker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/GlobalConstants.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/GlobalConstants.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/Style.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/a-star-with-move-primitives/a/path/finding/entity/Style.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/control/NodeValueCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/control/NodeValueCalculator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,37 +84,60 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom" timestamp="1578826097534">
+    <state x="493" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1578908190941">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578826097534" />
-    <state width="1493" height="211" key="GridCell.Tab.0.center" timestamp="1578826097533">
+    <state x="493" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1578908190941" />
+    <state x="606" y="116" key="#xdebugger.evaluate" timestamp="1578916574805">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578826097533" />
-    <state width="1493" height="211" key="GridCell.Tab.0.left" timestamp="1578826097533">
+    <state x="606" y="116" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1578916574805" />
+    <state width="1493" height="262" key="GridCell.Tab.0.bottom" timestamp="1578916596716">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578826097533" />
-    <state width="1493" height="211" key="GridCell.Tab.0.right" timestamp="1578826097534">
+    <state width="1493" height="262" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578916596716" />
+    <state width="1493" height="262" key="GridCell.Tab.0.center" timestamp="1578916596716">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="211" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578826097534" />
-    <state width="1493" height="262" key="GridCell.Tab.1.bottom" timestamp="1578826097529">
+    <state width="1493" height="262" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578916596716" />
+    <state width="1493" height="262" key="GridCell.Tab.0.left" timestamp="1578916596716">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578826097529" />
-    <state width="1493" height="262" key="GridCell.Tab.1.center" timestamp="1578826097529">
+    <state width="1493" height="262" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578916596716" />
+    <state width="1493" height="262" key="GridCell.Tab.0.right" timestamp="1578916596716">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578826097529" />
-    <state width="1493" height="262" key="GridCell.Tab.1.left" timestamp="1578826097528">
+    <state width="1493" height="262" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578916596716" />
+    <state width="1493" height="262" key="GridCell.Tab.1.bottom" timestamp="1578916596717">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578826097528" />
-    <state width="1493" height="262" key="GridCell.Tab.1.right" timestamp="1578826097529">
+    <state width="1493" height="262" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578916596717" />
+    <state width="1493" height="262" key="GridCell.Tab.1.center" timestamp="1578916596716">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578826097529" />
+    <state width="1493" height="262" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578916596716" />
+    <state width="1493" height="262" key="GridCell.Tab.1.left" timestamp="1578916596716">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="262" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578916596716" />
+    <state width="1493" height="262" key="GridCell.Tab.1.right" timestamp="1578916596717">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="262" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578916596717" />
+    <state x="77" y="20" width="613" height="789" key="find.popup" timestamp="1578915694562">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="77" y="20" width="613" height="789" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1578915694562" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java</url>
+          <line>161</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

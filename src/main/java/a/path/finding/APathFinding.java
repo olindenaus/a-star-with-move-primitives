@@ -4,11 +4,7 @@ import a.path.finding.boundary.Frame;
 import a.path.finding.control.NodeValueCalculator;
 import a.path.finding.control.PathConnector;
 import a.path.finding.entity.Node;
-import a.path.finding.orientation.Orientation;
-import a.path.finding.orientation.OrientationDown;
-import a.path.finding.orientation.OrientationLeft;
-import a.path.finding.orientation.OrientationRight;
-import a.path.finding.orientation.OrientationUp;
+import a.path.finding.orientation.*;
 
 public class APathFinding {
 
@@ -16,6 +12,7 @@ public class APathFinding {
     private Node startNode, endNode, parent;
     private boolean running, complete;
     private PathConnector pathConnector;
+    private ControlHandler controlHandler;
     private NodeValueCalculator nodeValueCalculator = new NodeValueCalculator();
     private OrientationDown orientationDown = new OrientationDown();
     private OrientationLeft orientationLeft = new OrientationLeft();
@@ -36,11 +33,12 @@ public class APathFinding {
         return parent;
     }
 
-    public APathFinding(Frame frame, Node startNode, Node endNode, PathConnector pathConnector) {
+    public APathFinding(Frame frame, Node startNode, Node endNode, PathConnector pathConnector, ControlHandler controlHandler) {
         this.startNode = startNode;
         this.endNode = endNode;
         this.frame = frame;
         this.pathConnector = pathConnector;
+        this.controlHandler = controlHandler;
     }
 
     public void start(Node s, Node e) {
@@ -161,6 +159,7 @@ public class APathFinding {
 
     private void success() {
         endNode.setParent(parent);
+        controlHandler.getLabelByName("howManyNodes").setText("Nodes: " + (astar.getOpenNodes().size() + astar.getClosedList().size()));
         pathConnector.connectPath(startNode, endNode, astar.getClosedList());
         running = false;
         complete = true;
