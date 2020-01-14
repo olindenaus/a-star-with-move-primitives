@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/control/NodeValueCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/control/NodeValueCalculator.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,6 +104,9 @@
       <workItem from="1578223853275" duration="7691000" />
       <workItem from="1578420626184" duration="36000" />
       <workItem from="1578836591015" duration="10121000" />
+      <workItem from="1578858510832" duration="666000" />
+      <workItem from="1578932939539" duration="598000" />
+      <workItem from="1578992563925" duration="2327000" />
     </task>
     <servers />
   </component>
@@ -128,7 +131,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java</url>
-          <line>201</line>
+          <line>219</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>

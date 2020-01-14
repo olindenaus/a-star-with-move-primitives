@@ -8,8 +8,7 @@ import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class NodeValueCalculator {
     // measure simulation time
-    // add number of calculated nodes
-// check if algorithm always works
+    // check if algorithm always works
     // what resolution values are the best, statistically, what range
     // how to choose the resolution
     // information to people that would continue the project

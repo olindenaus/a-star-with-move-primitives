@@ -31,6 +31,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     Astar astar = Astar.getInstance();
 
     Timer timer = new Timer(TIME_INTERVAL, this);
+    long startTime = 0, now = 0;
 
     public static void main(String[] args) {
         new Frame();
@@ -176,7 +177,15 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
             stage = "Finished";
             timer.stop();
         }
+        updateTime();
         handleButtonClick(e);
+    }
+
+    private void updateTime() {
+        now = System.currentTimeMillis();
+        long time = now - startTime;
+        JLabel timeLabel = controlHandler.getLabelByName("simulationTime");
+        timeLabel.setText("Time: " + time + " ms.");
     }
 
     private void handleButtonClick(ActionEvent e) {
@@ -230,7 +239,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
         controlHandler.getButtonByName("run").setText("stop");
         controlHandler.getButtonByName("run").setActionCommand("stop");
         stage = "Running";
+        startTime = System.currentTimeMillis();
         start();
+        updateTime();
     }
 
     private void start() {
