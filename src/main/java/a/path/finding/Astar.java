@@ -40,7 +40,7 @@ public class Astar {
         return instance;
     }
 
-    public List<Node> getClosedList() {
+    public List<Node> getClosedNodes() {
         return closed;
     }
 

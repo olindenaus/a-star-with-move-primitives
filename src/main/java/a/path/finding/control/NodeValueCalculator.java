@@ -7,7 +7,6 @@ import a.path.finding.orientation.Orientation;
 import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class NodeValueCalculator {
-    // measure simulation time
     // check if algorithm always works
     // what resolution values are the best, statistically, what range
     // how to choose the resolution

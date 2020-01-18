@@ -96,9 +96,7 @@ public class APathFinding {
             return;
         }
         removeOpen(parent);
-//        if (hasPossibleMovements) {
         astar.addClosed(parent);
-//        }
         this.parent = parent;
     }
 
@@ -159,8 +157,8 @@ public class APathFinding {
 
     private void success() {
         endNode.setParent(parent);
-        controlHandler.getLabelByName("howManyNodes").setText("Nodes: " + (astar.getOpenNodes().size() + astar.getClosedList().size()));
-        pathConnector.connectPath(startNode, endNode, astar.getClosedList());
+        controlHandler.getLabelByName("howManyNodes").setText("Nodes: " + (astar.getOpenNodes().size() + astar.getClosedNodes().size()));
+        pathConnector.connectPath(startNode, endNode, astar.getClosedNodes());
         running = false;
         complete = true;
         frame.repaint();

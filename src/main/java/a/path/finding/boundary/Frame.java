@@ -2,55 +2,52 @@ package a.path.finding.boundary;
 
 import a.path.finding.APathFinding;
 import a.path.finding.Astar;
-import a.path.finding.control.CollisionChecker;
 import a.path.finding.ControlHandler;
-import a.path.finding.control.PathConnector;
-import a.path.finding.control.SetupLoader;
-import a.path.finding.control.SetupSaver;
+import a.path.finding.control.*;
 import a.path.finding.entity.GlobalConstants;
 import a.path.finding.entity.Node;
 import a.path.finding.entity.Setup;
-import a.path.finding.entity.Style;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 
+import static a.path.finding.entity.GlobalConstants.START_ORIENTATION;
 import static a.path.finding.entity.GlobalConstants.SIZE;
 import static a.path.finding.entity.GlobalConstants.TIME_INTERVAL;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
-    ControlHandler controlHandler;
-    JFrame window;
-    APathFinding aPathFinding;
-    char currentKey = (char) 0;
-    Node startNode, endNode;
-    String stage;
-    PathConnector pathConnector = new PathConnector();
-    Astar astar = Astar.getInstance();
-
-    Timer timer = new Timer(TIME_INTERVAL, this);
-    long startTime = 0, now = 0;
+    private ControlHandler controlHandler;
+    private JFrame window;
+    private APathFinding aPathFinding;
+    private char currentKey = (char) 0;
+    private Node startNode, endNode;
+    private String stage;
+    private PathConnector pathConnector = new PathConnector();
+    private Astar astar = Astar.getInstance();
+    private Drawer drawer;
+    private Timer timer = new Timer(TIME_INTERVAL, this);
+    private long startTime = 0;
 
     public static void main(String[] args) {
         new Frame();
     }
 
     public Frame() {
-        startNode = new Node(5 * SIZE, SIZE);
-        endNode = new Node(5 * SIZE, 5 * SIZE);
+        startNode = new Node(15 * SIZE, 5* SIZE, START_ORIENTATION);
+        endNode = new Node(25 * SIZE, 15 * SIZE);
         controlHandler = new ControlHandler(this);
         stage = "Map Creation";
+        aPathFinding = new APathFinding(this, startNode, endNode, pathConnector, controlHandler);
+        controlHandler.addAllComponents();
         setLayout(null);
         addMouseListener(this);
         addMouseMotionListener(this);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
-        aPathFinding = new APathFinding(this, startNode, endNode, pathConnector, controlHandler);
         setupWindow();
-        controlHandler.addAllComponents();
+        drawer = new Drawer(this);
         this.revalidate();
         this.repaint();
     }
@@ -68,106 +65,20 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        drawGrid(g);
-        drawPoint(g, startNode, true);
-        drawObstacles(g);
-        drawOpenNodes(g);
-        drawClosedNodes(g);
-        drawPath(g);
-        drawPoint(g, endNode, false);
-        drawControlPanel(g);
+        drawBoard(g);
         controlHandler.getLabelByName("modeText").setText(stage);
         controlHandler.positionElements();
     }
 
-    private void drawGrid(Graphics g) {
-        g.setColor(Color.lightGray);
-        for (int j = 0; j < this.getHeight(); j += SIZE) {
-            for (int i = 0; i < this.getWidth(); i += SIZE) {
-                g.drawRect(i, j, SIZE, SIZE);
-            }
-        }
-    }
-
-    private void drawObstacles(Graphics g) {
-        g.setColor(Color.black);
-        for (int i = 0; i < astar.getObstacles().size(); i++) {
-            g.fillRect(astar.getObstacles().get(i).getX() + 1, astar.getObstacles().get(i).getY() + 1,
-                    SIZE - 1, SIZE - 1);
-        }
-    }
-
-    private void drawOpenNodes(Graphics g) {
-        for (int i = 0; i < astar.getOpenNodes().size(); i++) {
-            Node current = astar.getOpenNodes().get(i);
-            g.setColor(Style.greenHighlight);
-            g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
-            drawInfo(current, g);
-        }
-    }
-
-    private void drawPath(Graphics g) {
-        ArrayList<Node> pathNodes = pathConnector.getPath();
-        for (int i = 0; i < pathNodes.size(); i++) {
-            Node current = pathNodes.get(i);
-            if (i != pathNodes.size() - 1) {
-                Node next = pathNodes.get(i + 1);
-                drawArc(g, current, next);
-            }
-            g.setColor(Style.blueHighlight);
-            g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
-            drawInfo(current, g);
-        }
-    }
-
-    private void drawArc(Graphics g, Node current, Node next) {
-        int offset = SIZE / 2;
-        int startX = current.getX() + offset;
-        int startY = current.getY() + offset;
-        int endX = next.getX() + offset;
-        int endY = next.getY() + offset;
-        g.setColor(Style.darkText);
-        g.drawLine(startX, startY, endX, endY);
-    }
-
-    private void drawClosedNodes(Graphics g) {
-        for (int i = 0; i < astar.getClosedList().size(); i++) {
-            Node current = astar.getClosedList().get(i);
-            g.setColor(Style.redHighlight);
-            g.fillRect(current.getX() + 1, current.getY() + 1, SIZE - 1, SIZE - 1);
-            drawInfo(current, g);
-        }
-    }
-
-    public void drawInfo(Node current, Graphics g) {
-        if (SIZE > 49) {
-            g.setFont(Style.smallText);
-            g.setColor(Color.black);
-            int top = current.getY() + 16;
-            int bot = current.getY() + SIZE - 7;
-            int left = current.getX() + 2;
-            int right = current.getX() + SIZE - 20;
-            g.drawString(Integer.toString(current.getF()), left, top);
-            g.drawString(Integer.toString(current.getResolution()), right, top);
-            g.drawString(Integer.toString(current.getG()), left, bot);
-            g.drawString(Integer.toString(current.getH()), right, bot);
-        }
-    }
-
-    private void drawPoint(Graphics g, Node node, boolean isStart) {
-        if (node != null) {
-            g.setColor(Color.blue);
-            if (!isStart) {
-                g.setColor(Color.red);
-            }
-            g.fillRect(node.getX() + 1, node.getY() + 1, SIZE - 1, SIZE - 1);
-        }
-    }
-
-    private void drawControlPanel(Graphics g) {
-        g.setColor(Style.btnPanel);
-        int panelHeight = 120;
-        g.fillRect(5, getHeight() - panelHeight, 320, panelHeight);
+    public void drawBoard(Graphics g) {
+        drawer.drawGrid(g);
+        drawer.drawStartPoint(g, startNode);
+        drawer.drawObstacles(g, astar.getObstacles());
+        drawer.drawOpenNodes(g, astar.getOpenNodes());
+        drawer.drawClosedNodes(g, astar.getClosedNodes());
+        drawer.drawPath(g, pathConnector);
+        drawer.drawEndPoint(g, endNode);
+        drawer.drawControlPanel(g);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -182,7 +93,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, Mous
     }
 
     private void updateTime() {
-        now = System.currentTimeMillis();
+        long now = System.currentTimeMillis();
         long time = now - startTime;
         JLabel timeLabel = controlHandler.getLabelByName("simulationTime");
         timeLabel.setText("Time: " + time + " ms.");
