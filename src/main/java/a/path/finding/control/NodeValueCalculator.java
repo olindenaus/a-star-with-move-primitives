@@ -7,12 +7,6 @@ import a.path.finding.orientation.Orientation;
 import static a.path.finding.entity.GlobalConstants.SIZE;
 
 public class NodeValueCalculator {
-    // check if algorithm always works
-    // what resolution values are the best, statistically, what range
-    // how to choose the resolution
-    // information to people that would continue the project
-    // try to come up with new f() function, something smarter
-    // report, 2-3 pages
 
     private Astar astar = Astar.getInstance();
 

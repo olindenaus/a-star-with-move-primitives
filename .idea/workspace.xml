@@ -3,9 +3,32 @@
   <component name="ChangeListManager">
     <list default="true" id="a8a5bc80-f1a1-48f6-acc1-29c575035afa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tunnel-shape-with-shortcut.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tunnel-shape-with-shortcut.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tunnel-shape.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tunnel-shape.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/U-shape-fixed.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/U-shape-with-skipping-bug.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cave_v2_200_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cave_v2_20_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/maze_20_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resPenaltyExample_200_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resPenaltyExample_50_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/APathFinding.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/boundary/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/control/BoardManager.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/control/NodeValueCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/control/NodeValueCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/GlobalConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/a/path/finding/entity/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/start_at_U_TOP_200_10.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/start_inside_U_200_10.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target_behind_wallv1_50_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target_behind_wallv2_50_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target_in_cave_50_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weird-shapes-maze-worked-correctly-test-1.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weird-shapes-maze-worked-correctly-test-1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weird-shapes-maze-worked-correctly-test-2.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weird-shapes-maze-worked-correctly-test-3-with-shortcut.ser" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +59,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -106,12 +130,28 @@
       <workItem from="1578836591015" duration="10121000" />
       <workItem from="1578858510832" duration="666000" />
       <workItem from="1578932939539" duration="598000" />
-      <workItem from="1578992563925" duration="2327000" />
+      <workItem from="1578992563925" duration="4137000" />
+      <workItem from="1578999411927" duration="2326000" />
+      <workItem from="1579337222976" duration="1510000" />
+      <workItem from="1579418554372" duration="1799000" />
+      <workItem from="1579436592313" duration="23000" />
+      <workItem from="1579446267593" duration="2661000" />
+      <workItem from="1579449716859" duration="4295000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -125,16 +165,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/a/path/finding/ControlHandler.java</url>
-          <line>219</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

@@ -94,7 +94,12 @@ public class Node implements Serializable {
     }
 
     public void setF() {
-        this.f = h + g + resolution * RESOLUTION_PENALTY;
+        int ff = h + g;
+//        if (h < SIZE * ORIGINAL_STEP_SIZE) {
+//            this.f = ff;
+//            return;
+//        }
+        this.f = ff + resolution * RESOLUTION_PENALTY;
     }
 
     @Override

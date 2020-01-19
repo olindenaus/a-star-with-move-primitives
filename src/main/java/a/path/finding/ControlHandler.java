@@ -42,7 +42,7 @@ public class ControlHandler {
 
         resolutionPenalty = new JLabel("RP: " + RESOLUTION_PENALTY);
         resolutionPenalty.setName("resolutionPenalty");
-        resolutionPenalty.setFont(Style.numbers);
+        resolutionPenalty.setFont(Style.bigText);
         resolutionPenalty.setForeground(Style.darkText);
         resolutionPenalty.setVisible(true);
 
@@ -54,7 +54,7 @@ public class ControlHandler {
 
         howManyNodes = new JLabel("Nodes: 0");
         howManyNodes.setName("howManyNodes");
-        howManyNodes.setFont(Style.numbers);
+        howManyNodes.setFont(Style.bigText);
         howManyNodes.setForeground(Style.darkText);
         howManyNodes.setVisible(true);
 
@@ -170,12 +170,12 @@ public class ControlHandler {
         loadSetup.setBounds(100, frame.getHeight() - 110, 80, 22);
         clear.setBounds(200, frame.getHeight() - 110, 50, 20);
         rpTextField.setBounds(210, frame.getHeight() - 85, 50, 20);
-        resolutionPenalty.setBounds(265, frame.getHeight() - 85, 50, 20);
+        resolutionPenalty.setBounds(frame.getWidth() - 200, 80, 100, 50);
         tiTextField.setBounds(210, frame.getHeight() - 60, 50, 20);
         timeInterval.setBounds(265, frame.getHeight() - 60, 50, 20);
         change.setBounds(200, frame.getHeight() - 30, 100, 20);
-        howManyNodes.setBounds(200, frame.getHeight() - 10, 90, 10);
-        simulationTime.setBounds(frame.getWidth() - 300, 20, 200, 50);
+        howManyNodes.setBounds(frame.getWidth() - 200, 50, 200, 50);
+        simulationTime.setBounds(frame.getWidth() - 200, 20, 200, 50);
     }
 
     public void updateLabels() {

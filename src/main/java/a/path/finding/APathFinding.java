@@ -84,6 +84,7 @@ public class APathFinding {
     }
 
     public void findPath(Node parent) {
+        controlHandler.getLabelByName("howManyNodes").setText("Nodes: " + (astar.getOpenNodes().size() + astar.getClosedNodes().size()));
         checkPossibilities(parent);
         parent = lowestFCostFromOpenNodes();
         if (parent == null) {
